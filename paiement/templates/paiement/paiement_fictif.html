@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Paiement Fictif - Limitless</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .payment-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        #card_type {
+            font-weight: bold;
+            color: #005eff;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 100px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #005eff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="payment-container">
+    <div class="logo-container">
+        <img src="{% static 'images/logo.png' %}" alt="Logo Limitless" width="500%" />
+    </div>
+
+    <h2>Paiement Fictif</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="card_name">Nom sur la carte :</label>
+        <input type="text" id="card_name" name="card_name" required>
+
+        <label for="card_number">Numéro de carte :</label>
+        <input type="text" id="card_number" name="card_number" maxlength="19" required>
+        <span id="card_type"></span>
+
+        <label for="expiry_date">Date d’expiration :</label>
+        <span id="expiry_error" style="color:red;"></span>
+        <input type="month" id="expiry_date" name="expiry_date" required>
+
+        <label for="cvc">CVC :</label>
+        <input type="text" id="cvc" name="cvc" maxlength="4" required>
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="montant">Montant (TND) :</label>
+        <input type="number" id="montant" name="montant" required step="0.01" min="1">
+
+        <button type="submit" class="submit-btn">Payer</button>
+    </form>
+</div>
+
+<!-- 💡 Script JavaScript directement dans la page -->
+<script>
+    const cardInput = document.getElementById("card_number");
+    const cardType = document.getElementById("card_type");
+    const expiryDateInput = document.getElementById("expiry_date");
+    const expiryError = document.getElementById("expiry_error");
+    const form = document.querySelector("form");
+
+    // ➤ Détection du type de carte
+    cardInput.addEventListener("input", function () {
+        const number = cardInput.value.replace(/\D/g, "");
+        if (number.match(/^4/)) {
+            cardType.textContent = " (Visa)";
+        } else if (number.match(/^5[1-5]/)) {
+            cardType.textContent = " (MasterCard)";
+        } else {
+            cardType.textContent = "";
+        }
+    });
+
+    // ➤ Vérification de la date d’expiration avant l’envoi du formulaire
+    form.addEventListener("submit", function (event) {
+        const today = new Date();
+        const [year, month] = expiryDateInput.value.split("-");
+        const expiryDate = new Date(year, month);
+
+        if (!expiryDateInput.value) {
+            expiryError.textContent = "Veuillez entrer une date.";
+            event.preventDefault();
+        } else if (expiryDate <= today) {
+            expiryError.textContent = "La date doit être dans le futur.";
+            event.preventDefault();
+        } else {
+            expiryError.textContent = "";
+        }
+    });
+</script>
+
+
+</body>
+</html>

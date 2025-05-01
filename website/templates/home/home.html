@@ -1,0 +1,896 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Limitless - Marketplace de comptes premium{% endblock %}
+
+{% block content %}
+<!-- Section Héro avec fond d'image et overlay -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-lg-start text-center">
+                <img src="{% static 'images/logo1.png' %}" alt="Limitless" class="mb-4 hero-logo" style="max-width: 220px;">
+                <h1 class="mb-4">Débloquez l'accès à vos services préférés</h1>
+                <p class="mb-5">
+                    Bienvenue sur Limitless, votre marketplace de confiance pour acheter des comptes premium aux meilleurs prix en Tunisie.
+                </p>
+                <div class="d-flex flex-column flex-md-row gap-3 justify-content-lg-start justify-content-center">
+                    <a href="#services" class="btn btn-primary btn-lg">Explorer nos services</a>
+                    <a href="{% url 'register' %}" class="btn btn-outline-light btn-lg">Créer un compte</a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="floating-device">
+                    <img src="{% static 'images/logo2.png' %}" alt="Limitless App" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistiques -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="stat-number" data-target="15000">15 000+</h3>
+                    <p class="stat-text">Utilisateurs satisfaits</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="stat-number" data-target="50000">50 000+</h3>
+                    <p class="stat-text">Comptes vendus</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="stat-number" data-target="10">10+</h3>
+                    <p class="stat-text">Services disponibles</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Avantages / Pourquoi nous choisir -->
+<section class="py-5 section-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-6 text-center">
+                <h2 class="section-title">Pourquoi choisir Limitless ?</h2>
+                <p class="section-subtitle">Nous offrons la meilleure expérience d'achat de comptes premium en Tunisie</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">100% Sécurisé</h3>
+                    <p class="feature-text">Toutes les transactions sont protégées et les comptes sont garantis pendant toute la durée de votre abonnement.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="feature-title">Prix imbattables</h3>
+                    <p class="feature-text">Économisez jusqu'à 70% sur vos abonnements préférés avec nos tarifs exclusifs en Dinar Tunisien.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">Support 24/7</h3>
+                    <p class="feature-text">Notre équipe de support client est disponible 24h/24 et 7j/7 pour répondre à toutes vos questions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services / Catégories -->
+<section id="services" class="services-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-6 text-center">
+                <h2 class="section-title">Nos services premium</h2>
+                <p class="section-subtitle">Découvrez notre sélection de comptes premium à des prix imbattables</p>
+            </div>
+        </div>
+        
+        <!-- Streaming Vidéo -->
+        <h3 class="category-title mb-4">Streaming Vidéo</h3>
+        <div class="row g-4 mb-5">
+            <!-- Netflix -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'netflix_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner netflix-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/netflix.jpg' %}" alt="Netflix">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">Netflix</h3>
+                            <p class="service-description">Films et séries en streaming illimité</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 15 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'netflix_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Disney+ -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'disney_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner disney-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/disney.jpg' %}" alt="Disney+">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">Disney+</h3>
+                            <p class="service-description">Films et séries Disney, Marvel, Star Wars</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 18 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'disney_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- HBO Max -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'hbomax_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner hbomax-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/hbomax.jpg' %}" alt="HBO Max">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">HBO Max</h3>
+                            <p class="service-description">Séries HBO et films Warner Bros</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 20 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'hbomax_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Amazon Prime Video -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'prime_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner prime-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/prime.jpg' %}" alt="Amazon Prime Video">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">Prime Video</h3>
+                            <p class="service-description">Films et séries Amazon exclusifs</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 16 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'prime_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Musique -->
+        <h3 class="category-title mb-4">Musique</h3>
+        <div class="row g-4 mb-5">
+            <!-- Spotify -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'spotify_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner spotify-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/spotify.gif' %}" alt="Spotify">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">Spotify</h3>
+                            <p class="service-description">Musique illimitée sans publicités</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 10 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'spotify_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Apple Music -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'applemusic_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner applemusic-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/applemusic.jpg' %}" alt="Apple Music">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">Apple Music</h3>
+                            <p class="service-description">Musique et radio en streaming</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 12 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'applemusic_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- YouTube Music -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'youtubemusic_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner ytmusic-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/ytmusic.jpg' %}" alt="YouTube Music">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">YouTube Music</h3>
+                            <p class="service-description">Musique et clips vidéo</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 11 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'youtubemusic_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Deezer -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'deezer_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner deezer-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/deezer.jpg' %}" alt="Deezer">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">Deezer</h3>
+                            <p class="service-description">Musique et podcasts en streaming</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 10 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'deezer_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Gaming -->
+        <h3 class="category-title mb-4">Gaming</h3>
+        <div class="row g-4 mb-5">
+            <!-- Xbox Game Pass -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'xbox_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner xbox-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/xbox.jpg' %}" alt="Xbox Game Pass">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">Xbox Game Pass</h3>
+                            <p class="service-description">Jeux Xbox et PC en illimité</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 25 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'xbox_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- PlayStation Plus -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'playstation_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner ps-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/psplus.jpg' %}" alt="PlayStation Plus">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">PlayStation Plus</h3>
+                            <p class="service-description">Jeux PS4/PS5 et avantages en ligne</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 30 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'playstation_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- EA Play -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'eaplay_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner ea-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/eaplay.jpg' %}" alt="EA Play">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">EA Play</h3>
+                            <p class="service-description">Jeux EA en illimité</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 15 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'eaplay_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Ubisoft+ -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'ubisoft_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner ubisoft-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/ubisoft.jpg' %}" alt="Ubisoft+">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">Ubisoft+</h3>
+                            <p class="service-description">Jeux Ubisoft en illimité</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 20 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'ubisoft_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Anime -->
+        <h3 class="category-title mb-4">Anime</h3>
+        <div class="row g-4">
+            <!-- Crunchyroll -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'crunchyroll_page' %}" class="text-decoration-none">
+                    <div class="service-card">
+                        <div class="service-banner crunchyroll-banner">
+                            <div class="service-logo">
+                                <img src="{% static 'images/crunchyroll.jpg' %}" alt="Crunchyroll">
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="service-title">Crunchyroll</h3>
+                            <p class="service-description">Anime et manga en streaming</p>
+                            <div class="service-price">
+                                <span class="price">À partir de 12 TND</span>
+                                <span class="period">/mois</span>
+                            </div>
+                            <a href="{% url 'crunchyroll_page' %}" class="btn btn-outline-primary service-btn">
+                                Voir les offres
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="#services" class="btn btn-primary btn-lg">Voir tous les services</a>
+        </div>
+    </div>
+</section>
+
+<!-- Comment ça marche -->
+<section class="how-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-6 text-center">
+                <h2 class="section-title">Comment ça marche</h2>
+                <p class="section-subtitle">Obtenez votre compte premium en 3 étapes simples</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="step-title">Créez un compte</h3>
+                    <p class="step-description">Inscrivez-vous en quelques secondes sur notre plateforme sécurisée.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="step-title">Choisissez un service</h3>
+                    <p class="step-description">Parcourez notre sélection de comptes premium et choisissez celui qui vous convient.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="step-title">Profitez de votre service</h3>
+                    <p class="step-description">Recevez immédiatement vos accès et profitez de votre compte premium sans interruption.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Commencer maintenant</a>
+        </div>
+    </div>
+</section>
+
+<!-- Avis des utilisateurs -->
+<section class="py-5 section-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-6 text-center">
+                <h2 class="section-title">Avis de nos clients</h2>
+                <p class="section-subtitle">Découvrez ce que nos clients disent de nous</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% if reviews %}
+                {% for review in reviews %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">
+                                    {% if review.service %}
+                                        {{ review.get_service_display }}
+                                    {% else %}
+                                        Service
+                                    {% endif %}
+                                </h5>
+                                <div class="text-warning">
+                                    {% if review.rating %}
+                                        {% for i in "12345" %}
+                                            {% if forloop.counter <= review.rating %}
+                                                <i class="fas fa-star"></i>
+                                            {% else %}
+                                                <i class="far fa-star"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p class="card-text">
+                                {% if review.comment %}
+                                    {{ review.comment }}
+                                {% else %}
+                                    Aucun commentaire
+                                {% endif %}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    Par {% if review.user %}{{ review.user.username }}{% else %}Anonyme{% endif %}
+                                </small>
+                                <small class="text-muted">
+                                    {% if review.created_at %}{{ review.created_at|date:"d/m/Y" }}{% endif %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <div class="alert alert-info text-center">
+                        Soyez le premier à donner votre avis sur nos services !
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'review_list' %}" class="btn btn-primary">Voir tous les avis</a>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-5 section-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-6 text-center">
+                <h2 class="section-title">Questions fréquentes</h2>
+                <p class="text-muted">Tout ce que vous devez savoir sur nos services</p>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Comment fonctionnent les comptes partagés ?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Nos comptes sont des comptes premium authentiques que vous partagez avec d'autres utilisateurs. Chaque utilisateur a son propre profil et ses propres préférences. Les informations de connexion vous sont fournies immédiatement après votre achat.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Les comptes sont-ils garantis ?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Oui, tous nos comptes sont garantis pour la durée de votre abonnement. Si vous rencontrez un problème, notre service client vous assistera et vous fournira de nouveaux identifiants si nécessaire.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Comment puis-je payer ?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Nous acceptons les paiements par carte bancaire. Toutes les transactions sont sécurisées et vos informations bancaires ne sont jamais stockées sur nos serveurs.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Puis-je modifier le mot de passe du compte ?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Non, vous ne devez pas modifier le mot de passe ou les informations du compte. Cela pourrait affecter les autres utilisateurs et annuler votre garantie. Vous pouvez cependant créer et personnaliser votre propre profil sur le compte.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 cta-section text-white text-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="display-5 fw-bold mb-4">Prêt à débloquer l'accès à vos services préférés ?</h2>
+                <p class="lead mb-5">Rejoignez des milliers d'utilisateurs satisfaits et économisez sur vos services premium dès aujourd'hui.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-lg px-5">Commencer maintenant</a>
+                    <a href="#services" class="btn btn-primary btn-lg px-5">Voir nos offres</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formulaire de demande Modal -->
+<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="requestModalLabel">Envoyer une demande</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'submit_request' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Téléphone</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Adresse</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Ville</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Votre demande</label>
+                        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Styles pour la page d'accueil */
+/* Section Hero */
+.hero-section {
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.9), rgba(10, 88, 202, 0.85)), url('{% static "images/hero-bg.jpg" %}') no-repeat center center/cover;
+    padding: 120px 0 180px;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-logo {
+    max-width: 280px !important;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.floating-device {
+    animation: float 6s ease-in-out infinite;
+    position: relative;
+    text-align: center;
+    max-width: 100%;
+}
+
+.floating-device img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.floating-device img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+
+.wave-bottom {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+/* Statistiques */
+.stat-item {
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.stat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background-color: rgba(13, 110, 253, 0.1);
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #0d6efd;
+}
+
+.stat-text {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+/* Avantages / Features */
+.section-light {
+    background-color: #f8f9fa;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 50px;
+    height: 3px;
+    background-color: #0d6efd;
+    transform: translateX(-50%);
+}
+
+.feature-card {
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(13, 110, 253, 0.1);
+    border-radius: 50%;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.feature-text {
+    color: #6c757d;
+}
+
+/* Services Cards */
+.service-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.service-banner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+}
+
+.service-logo {
+    position: relative;
+    z-index: 1;
+}
+
+.service-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.service-description {
+    color: #6c757d;
+}
+
+.service-price {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.service-btn {
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.service-btn:hover {
+    background-color: #0b5ed7;
+}
+</style>
+{% endblock %} 

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ajouter un avis - Limitless{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="h2 mb-4">Ajouter un avis</h1>
+                    
+                    <form method="post" action="{% url 'add_review' %}">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label class="form-label">Service</label>
+                            <select name="service" class="form-select" required>
+                                <option value="">Choisir un service</option>
+                                <optgroup label="Streaming Vidéo">
+                                    <option value="netflix">Netflix</option>
+                                    <option value="disney">Disney+</option>
+                                    <option value="hbomax">HBO Max</option>
+                                    <option value="prime">Amazon Prime Video</option>
+                                    <option value="hulu">Hulu</option>
+                                    <option value="appletv">Apple TV+</option>
+                                    <option value="paramount">Paramount+</option>
+                                    <option value="peacock">Peacock</option>
+                                </optgroup>
+                                <optgroup label="Musique">
+                                    <option value="spotify">Spotify</option>
+                                    <option value="applemusic">Apple Music</option>
+                                    <option value="youtubemusic">YouTube Music</option>
+                                    <option value="deezer">Deezer</option>
+                                </optgroup>
+                                <optgroup label="Gaming">
+                                    <option value="xbox">Xbox Game Pass</option>
+                                    <option value="playstation">PlayStation Plus</option>
+                                    <option value="eaplay">EA Play</option>
+                                    <option value="ubisoft">Ubisoft+</option>
+                                </optgroup>
+                                <optgroup label="Anime">
+                                    <option value="crunchyroll">Crunchyroll</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Note</label>
+                            <div class="rating">
+                                {% for i in "54321" %}
+                                <input type="radio" name="rating" value="{{ i }}" id="star{{ i }}" required>
+                                <label for="star{{ i }}"><i class="fas fa-star"></i></label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="comment" class="form-label">Commentaire</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">Publier mon avis</button>
+                            <a href="{% url 'review_list' %}" class="btn btn-outline-secondary">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_css %}
+<style>
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ddd;
+    padding: 0 0.1em;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffd700;
+}
+</style>
+{% endblock %}
+{% endblock %} 

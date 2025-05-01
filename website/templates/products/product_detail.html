@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} - Limitless{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <!-- Product Details -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="h2 mb-4">{{ product.name }}</h1>
+                    <p class="text-muted mb-4">{{ product.description }}</p>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3 class="h4 mb-0">{{ product.price }} TND</h3>
+                            <small class="text-muted">Par {{ product.seller.username }}</small>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary">Acheter maintenant</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Information -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-4">Informations</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <strong>Catégorie:</strong> {{ product.category.name }}
+                        </li>
+                        <li class="mb-2">
+                            <strong>Statut:</strong> 
+                            {% if product.status == 'available' %}
+                            <span class="badge bg-success">Disponible</span>
+                            {% else %}
+                            <span class="badge bg-danger">Vendu</span>
+                            {% endif %}
+                        </li>
+                        <li>
+                            <strong>Date d'ajout:</strong> {{ product.created_at|date:"d/m/Y" }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

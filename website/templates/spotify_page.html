@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Spotify Premium - Limitless{% endblock %}
+
+{% block content %}
+<!-- En-tête de l'offre -->
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-3" style="color: #1DB954;">Spotify Premium</h1>
+            <p class="lead mb-4">
+                Profitez de votre musique préférée sans publicités, avec une qualité audio supérieure
+                et la possibilité d'écouter hors ligne. Économisez sur votre abonnement avec nos offres exclusives.
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                <button class="btn btn-success btn-lg px-4" data-bs-toggle="modal" data-bs-target="#buySpotifyModal">
+                    <i class="fas fa-shopping-cart me-2"></i> Acheter maintenant
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="{% static 'images/spotify.gif' %}" alt="Spotify Premium" class="img-fluid rounded-4 shadow">
+        </div>
+    </div>
+</div>
+
+<!-- Caractéristiques -->
+<section class="container mb-5">
+    <h2 class="text-center mb-4">Pourquoi choisir Spotify Premium ?</h2>
+    
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3 text-success">
+                        <i class="fas fa-ban fa-3x"></i>
+                    </div>
+                    <h4>Sans publicité</h4>
+                    <p class="text-muted">Écoutez votre musique sans interruptions publicitaires.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3 text-success">
+                        <i class="fas fa-download fa-3x"></i>
+                    </div>
+                    <h4>Téléchargements</h4>
+                    <p class="text-muted">Écoutez votre musique hors-ligne, partout.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3 text-success">
+                        <i class="fas fa-music fa-3x"></i>
+                    </div>
+                    <h4>Qualité supérieure</h4>
+                    <p class="text-muted">Profitez d'un son haute-fidélité.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3 text-success">
+                        <i class="fas fa-headset fa-3x"></i>
+                    </div>
+                    <h4>Support 24/7</h4>
+                    <p class="text-muted">Notre équipe est disponible pour vous aider à tout moment.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Plans de prix -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">Nos formules Spotify</h2>
+    
+    <div class="row g-4 justify-content-center">
+        <!-- Plan 1 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>1 Mois</h3>
+                    <div class="pricing-price" style="color: #1DB954;">10 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Écoute hors ligne</li>
+                        <li><i class="fas fa-check"></i> Sans publicités</li>
+                        <li><i class="fas fa-check"></i> Qualité audio supérieure</li>
+                        <li><i class="fas fa-check"></i> Support inclus</li>
+                    </ul>
+                    <button class="btn btn-success mt-auto" data-bs-toggle="modal" data-bs-target="#buySpotifyModal" data-plan="1month" data-price="10">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 3 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center popular">
+                <span class="popular-badge">Populaire</span>
+                <div class="pricing-header">
+                    <h3>3 Mois</h3>
+                    <div class="pricing-price" style="color: #1DB954;">25 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Écoute hors ligne</li>
+                        <li><i class="fas fa-check"></i> Sans publicités</li>
+                        <li><i class="fas fa-check"></i> Qualité audio supérieure</li>
+                        <li><i class="fas fa-check"></i> Support prioritaire</li>
+                    </ul>
+                    <button class="btn btn-success mt-auto" data-bs-toggle="modal" data-bs-target="#buySpotifyModal" data-plan="3months" data-price="25">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 6 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>6 Mois</h3>
+                    <div class="pricing-price" style="color: #1DB954;">45 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Écoute hors ligne</li>
+                        <li><i class="fas fa-check"></i> Sans publicités</li>
+                        <li><i class="fas fa-check"></i> Qualité audio supérieure</li>
+                        <li><i class="fas fa-check"></i> Support VIP</li>
+                    </ul>
+                    <button class="btn btn-success mt-auto" data-bs-toggle="modal" data-bs-target="#buySpotifyModal" data-plan="6months" data-price="45">Acheter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="container mb-5">
+    <h2 class="text-center mb-4">Questions fréquentes</h2>
+    
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    Comment fonctionne le service ?
+                </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Après votre achat, vous recevrez par email les identifiants de connexion à un compte Spotify Premium. Ce compte vous permet d'accéder à l'intégralité du catalogue Spotify sans publicités, avec la possibilité d'écouter hors ligne et de profiter d'une qualité audio supérieure.
+                </div>
+            </div>
+        </div>
+        
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    Les comptes sont-ils garantis ?
+                </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Oui, tous nos comptes sont garantis pour la durée de votre abonnement. En cas de problème, notre service client vous assistera immédiatement et vous fournira de nouveaux identifiants si nécessaire.
+                </div>
+            </div>
+        </div>
+        
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    Puis-je modifier les playlists du compte ?
+                </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Oui, vous pouvez créer et gérer vos propres playlists sur le compte Spotify Premium que vous achetez. Vos playlists seront conservées tant que vous utilisez le même compte.
+                </div>
+            </div>
+        </div>
+        
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    Comment puis-je utiliser mon compte sur plusieurs appareils ?
+                </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Vous pouvez vous connecter avec vos identifiants sur smartphone, tablette, ordinateur ou tout autre appareil compatible avec Spotify. Notez cependant que vous ne pouvez écouter de la musique que sur un seul appareil à la fois.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal d'achat pour Spotify -->
+<div class="modal fade" id="buySpotifyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Acheter Spotify Premium</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'payer' %}" id="spotifyPaymentForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="product" value="Spotify Premium">
+                    <input type="hidden" name="plan" id="selectedSpotifyPlan" value="3months">
+                    <input type="hidden" name="price" id="selectedSpotifyPrice" value="25">
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="spotify-first-name" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="spotify-first-name" name="first_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="spotify-last-name" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="spotify-last-name" name="last_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="spotify-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="spotify-email" name="email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="spotify-phone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="spotify-phone" name="phone" placeholder="+216 XX XXX XXX" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <h5 class="mt-3">Informations de paiement</h5>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="spotify-card-number" class="form-label">Numéro de carte</label>
+                            <input type="text" class="form-control card-number-input" id="spotify-card-number" name="numero" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="spotify-card-expiry" class="form-label">Date d'expiration</label>
+                            <input type="text" class="form-control card-expiry-input" id="spotify-card-expiry" name="expiration" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="spotify-card-cvc" class="form-label">CVC</label>
+                            <input type="text" class="form-control card-cvc-input" id="spotify-card-cvc" name="cvc" placeholder="XXX" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="spotify-card-name" class="form-label">Nom sur la carte</label>
+                            <input type="text" class="form-control" id="spotify-card-name" name="nom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">Récapitulatif</h5>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Spotify Premium (3 mois)</span>
+                                    <span class="fw-bold" id="spotifyPlanDisplay">25 TND</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Frais de service</span>
+                                    <span>0 TND</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold">Total</span>
+                                    <span class="fw-bold" id="spotifyTotalDisplay">25 TND</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-success btn-lg w-100">Payer</button>
+                        <div class="text-center mt-3">
+                            <small class="text-muted">En cliquant sur "Payer", vous acceptez nos conditions d'utilisation.</small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mise à jour du formulaire de paiement en fonction du plan sélectionné
+        var buyModal = document.getElementById('buySpotifyModal');
+        buyModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var plan = button.getAttribute('data-plan') || '3months';
+            var price = button.getAttribute('data-price') || '25';
+            var planText = '';
+            
+            // Mise à jour des champs cachés
+            document.getElementById('selectedSpotifyPlan').value = plan;
+            document.getElementById('selectedSpotifyPrice').value = price;
+            
+            // Mise à jour du texte récapitulatif
+            switch(plan) {
+                case '1month':
+                    planText = 'Spotify Premium (1 mois)';
+                    break;
+                case '3months':
+                    planText = 'Spotify Premium (3 mois)';
+                    break;
+                case '6months':
+                    planText = 'Spotify Premium (6 mois)';
+                    break;
+            }
+            
+            // Mise à jour du récapitulatif
+            var planDisplay = document.getElementById('spotifyPlanDisplay');
+            var totalDisplay = document.getElementById('spotifyTotalDisplay');
+            
+            if (planDisplay) {
+                planDisplay.textContent = price + ' TND';
+            }
+            
+            if (totalDisplay) {
+                totalDisplay.textContent = price + ' TND';
+            }
+        });
+    });
+</script>
+{% endblock %}

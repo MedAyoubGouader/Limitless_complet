@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Limitless{% endblock %}</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS personnalisé -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% csrf_token %}
+    <!-- Nouvelle barre de navigation avec menu déroulant pour les services -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- Logo amélioré avec logo1.png -->
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo1.png' %}" alt="Limitless" class="logo-main">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">
+                            <i class="fas fa-home me-1"></i> Accueil
+                        </a>
+                    </li>
+                    
+                    <!-- Menu déroulant pour les services -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-tv me-1"></i> Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><h6 class="dropdown-header">Streaming Vidéo</h6></li>
+                            <li><a class="dropdown-item" href="{% url 'netflix_page' %}">
+                                <i class="fas fa-play me-2 text-danger"></i> Netflix
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'disney_page' %}">
+                                <i class="fas fa-film me-2 text-primary"></i> Disney+
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'hbomax_page' %}">
+                                <i class="fas fa-film me-2 text-purple"></i> HBO Max
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'prime_page' %}">
+                                <i class="fas fa-shopping-bag me-2 text-blue"></i> Amazon Prime Video
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'hulu_page' %}">
+                                <i class="fas fa-play me-2 text-green"></i> Hulu
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'appletv_page' %}">
+                                <i class="fas fa-tv me-2 text-dark"></i> Apple TV+
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'paramount_page' %}">
+                                <i class="fas fa-play me-2 text-blue"></i> Paramount+
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'peacock_page' %}">
+                                <i class="fas fa-feather me-2 text-blue"></i> Peacock
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">Musique</h6></li>
+                            <li><a class="dropdown-item" href="{% url 'spotify_page' %}">
+                                <i class="fab fa-spotify me-2 text-success"></i> Spotify
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'applemusic_page' %}">
+                                <i class="fab fa-apple me-2 text-dark"></i> Apple Music
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'youtubemusic_page' %}">
+                                <i class="fab fa-youtube me-2 text-danger"></i> YouTube Music
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'deezer_page' %}">
+                                <i class="fas fa-music me-2 text-purple"></i> Deezer
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">Gaming</h6></li>
+                            <li><a class="dropdown-item" href="{% url 'xbox_page' %}">
+                                <i class="fab fa-xbox me-2 text-success"></i> Xbox Game Pass
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'playstation_page' %}">
+                                <i class="fab fa-playstation me-2 text-primary"></i> PlayStation Plus
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'eaplay_page' %}">
+                                <i class="fas fa-gamepad me-2 text-danger"></i> EA Play
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'ubisoft_page' %}">
+                                <i class="fas fa-gamepad me-2 text-blue"></i> Ubisoft+
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">Anime</h6></li>
+                            <li><a class="dropdown-item" href="{% url 'crunchyroll_page' %}">
+                                <i class="fas fa-dragon me-2 text-warning"></i> Crunchyroll
+                            </a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">
+                            <i class="fas fa-info-circle me-1"></i> À propos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'review_list' %}">Avis</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'support_ticket_list' %}">Support</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                
+                <!-- Boutons d'authentification -->
+                <div class="auth-buttons">
+                    {% if user.is_authenticated %}
+                        <div class="dropdown">
+                            <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle me-1"></i> Mon compte
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="{% url 'account' %}">
+                                    <i class="fas fa-tachometer-alt me-2"></i> Tableau de bord
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">
+                                    <i class="fas fa-sign-out-alt me-2"></i> Déconnexion
+                                </a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'signIN' %}" class="btn btn-outline-light">
+                            <i class="fas fa-sign-in-alt me-1"></i> Connexion
+                        </a>
+                        <a href="{% url 'register' %}" class="btn btn-light">
+                            <i class="fas fa-user-plus me-1"></i> Inscription
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages flash -->
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Contenu principal -->
+    <main class="py-4">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Limitless</h5>
+                    <p>Votre marketplace de confiance pour les comptes premium aux meilleurs prix en Tunisie.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61574957236353"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Liens utiles</h5>
+                    <ul>
+                        <li><a href="{% url 'home' %}">Accueil</a></li>
+                        <li><a href="{% url 'about' %}">À propos</a></li>
+                        <li><a href="{% url 'terms_of_use' %}">Conditions d'utilisation</a></li>
+                        <li><a href="{% url 'privacy_policy' %}">Politique de confidentialité</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><i class="fas fa-envelope me-2"></i> contact@limitless.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +216 XX XXX XXX</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Tunis, Tunisie</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Limitless. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS et Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JS personnalisé -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/payment.js' %}"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

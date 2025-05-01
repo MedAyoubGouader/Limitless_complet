@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}EA Play - Limitless{% endblock %}
+
+{% block content %}
+<!-- En-tête de l'offre -->
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-3" style="color: #FF0000;">EA Play</h1>
+            <p class="lead mb-4">
+                Accédez à la bibliothèque complète des jeux EA. Profitez de jeux en avant-première, 
+                de réductions exclusives et d'une expérience de jeu premium à un prix imbattable.
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                <button class="btn btn-primary btn-lg px-4" style="background-color: #FF0000;" data-bs-toggle="modal" data-bs-target="#buyEAModal">
+                    <i class="fas fa-shopping-cart me-2"></i> Acheter maintenant
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="{% static 'images/eaplay.jpg' %}" alt="EA Play" class="img-fluid rounded-4 shadow">
+        </div>
+    </div>
+</div>
+
+<!-- Catalogue EA Play -->
+<section class="container mb-5">
+    <h2 class="text-center mb-4">Des avantages exclusifs</h2>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/ea-catalog1.jpg' %}" class="card-img-top" alt="Jeux EA">
+                <div class="card-body">
+                    <h4 class="card-title">Jeux EA</h4>
+                    <p class="card-text">Accédez à plus de 100 jeux EA, y compris les dernières sorties.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/ea-catalog2.jpg' %}" class="card-img-top" alt="Avant-premières">
+                <div class="card-body">
+                    <h4 class="card-title">Avant-premières</h4>
+                    <p class="card-text">Jouez aux nouveaux jeux EA jusqu'à 10 heures avant leur sortie.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/ea-catalog3.jpg' %}" class="card-img-top" alt="Réductions Exclusives">
+                <div class="card-body">
+                    <h4 class="card-title">Réductions Exclusives</h4>
+                    <p class="card-text">Profitez de 10% de réduction sur les achats de jeux EA.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Plans de prix -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">Nos formules EA Play</h2>
+    
+    <div class="row g-4 justify-content-center">
+        <!-- Plan 1 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>1 Mois</h3>
+                    <div class="pricing-price" style="color: #FF0000;">20 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Bibliothèque complète</li>
+                        <li><i class="fas fa-check"></i> Avant-premières</li>
+                        <li><i class="fas fa-check"></i> Réductions exclusives</li>
+                        <li><i class="fas fa-check"></i> Support inclus</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #FF0000;" data-bs-toggle="modal" data-bs-target="#buyEAModal" data-plan="1month" data-price="20">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 3 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center popular">
+                <span class="popular-badge">Populaire</span>
+                <div class="pricing-header">
+                    <h3>3 Mois</h3>
+                    <div class="pricing-price" style="color: #FF0000;">50 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Bibliothèque complète</li>
+                        <li><i class="fas fa-check"></i> Avant-premières</li>
+                        <li><i class="fas fa-check"></i> Réductions exclusives</li>
+                        <li><i class="fas fa-check"></i> Support prioritaire</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #FF0000;" data-bs-toggle="modal" data-bs-target="#buyEAModal" data-plan="3months" data-price="50">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 6 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>6 Mois</h3>
+                    <div class="pricing-price" style="color: #FF0000;">90 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Bibliothèque complète</li>
+                        <li><i class="fas fa-check"></i> Avant-premières</li>
+                        <li><i class="fas fa-check"></i> Réductions exclusives</li>
+                        <li><i class="fas fa-check"></i> Support VIP</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #FF0000;" data-bs-toggle="modal" data-bs-target="#buyEAModal" data-plan="6months" data-price="90">Acheter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal d'achat -->
+<div class="modal fade" id="buyEAModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: #FF0000;">
+                <h5 class="modal-title">Acheter EA Play</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'submit_request' %}" id="eaPaymentForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="product" value="EA Play">
+                    <input type="hidden" name="plan" id="selectedEAPlan" value="3months">
+                    <input type="hidden" name="price" id="selectedEAPrice" value="50">
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="ea-first-name" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="ea-first-name" name="first_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ea-last-name" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="ea-last-name" name="last_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ea-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="ea-email" name="email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ea-phone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="ea-phone" name="phone" placeholder="+216 XX XXX XXX" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <h5 class="mt-3">Informations de paiement</h5>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="ea-card-number" class="form-label">Numéro de carte</label>
+                            <input type="text" class="form-control card-number-input" id="ea-card-number" name="numero" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="ea-card-expiry" class="form-label">Date d'expiration</label>
+                            <input type="text" class="form-control card-expiry-input" id="ea-card-expiry" name="expiration" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="ea-card-cvc" class="form-label">CVC</label>
+                            <input type="text" class="form-control card-cvc-input" id="ea-card-cvc" name="cvc" placeholder="XXX" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="ea-card-name" class="form-label">Nom sur la carte</label>
+                            <input type="text" class="form-control" id="ea-card-name" name="nom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary w-100" style="background-color: #FF0000;">
+                            Payer <span id="eaTotalDisplay">50 TND</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mise à jour du formulaire de paiement en fonction du plan sélectionné
+        var buyModal = document.getElementById('buyEAModal');
+        buyModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var plan = button.getAttribute('data-plan') || '3months';
+            var price = button.getAttribute('data-price') || '50';
+            
+            // Mise à jour des champs cachés
+            document.getElementById('selectedEAPlan').value = plan;
+            document.getElementById('selectedEAPrice').value = price;
+            
+            // Mise à jour du récapitulatif
+            var totalDisplay = document.getElementById('eaTotalDisplay');
+            if (totalDisplay) {
+                totalDisplay.textContent = price + ' TND';
+            }
+        });
+    });
+</script>
+{% endblock %} 

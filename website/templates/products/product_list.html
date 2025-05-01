@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Produits - Limitless{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Nos Produits</h1>
+    
+    <!-- Filtres -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <select class="form-select" id="categoryFilter">
+                <option value="">Toutes les catégories</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    
+    <!-- Liste des produits -->
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatewords:30 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 mb-0">{{ product.price }} TND</span>
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">
+                            Voir les détails
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <small class="text-muted">Catégorie: {{ product.category.name }}</small>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                Aucun produit n'est disponible pour le moment.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+document.getElementById('categoryFilter').addEventListener('change', function() {
+    const categoryId = this.value;
+    const url = new URL(window.location.href);
+    
+    if (categoryId) {
+        url.searchParams.set('category', categoryId);
+    } else {
+        url.searchParams.delete('category');
+    }
+    
+    window.location.href = url.toString();
+});
+</script>
+{% endblock %}
+{% endblock %} 

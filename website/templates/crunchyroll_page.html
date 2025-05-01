@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Crunchyroll Premium - Limitless{% endblock %}
+
+{% block content %}
+<!-- En-tête de l'offre -->
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-3" style="color: #F47521;">Crunchyroll Premium</h1>
+            <p class="lead mb-4">
+                Accédez à la plus grande collection d'anime au monde sans publicités. Regardez en HD, profitez 
+                des sorties simultanées avec le Japon et téléchargez vos épisodes préférés pour les regarder hors ligne.
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                <button class="btn btn-lg px-4 text-white" style="background-color: #F47521;" data-bs-toggle="modal" data-bs-target="#buyCrunchyrollModal">
+                    <i class="fas fa-shopping-cart me-2"></i> Acheter maintenant
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="{% static 'images/crunchyroll.jpg' %}" alt="Crunchyroll Premium" class="img-fluid rounded-4 shadow">
+        </div>
+    </div>
+</div>
+
+<!-- Caractéristiques -->
+<section class="container mb-5">
+    <h2 class="text-center mb-4">Pourquoi choisir Crunchyroll Premium ?</h2>
+    
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3" style="color: #F47521;">
+                        <i class="fas fa-ban fa-3x"></i>
+                    </div>
+                    <h4>Sans publicité</h4>
+                    <p class="text-muted">Regardez vos anime préférés sans interruptions publicitaires.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3" style="color: #F47521;">
+                        <i class="fas fa-globe fa-3x"></i>
+                    </div>
+                    <h4>Simulcast</h4>
+                    <p class="text-muted">Nouveaux épisodes une heure après la diffusion au Japon.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3" style="color: #F47521;">
+                        <i class="fas fa-download fa-3x"></i>
+                    </div>
+                    <h4>Téléchargements</h4>
+                    <p class="text-muted">Téléchargez vos épisodes pour les regarder hors ligne.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3" style="color: #F47521;">
+                        <i class="fas fa-desktop fa-3x"></i>
+                    </div>
+                    <h4>Multi-appareils</h4>
+                    <p class="text-muted">Visionnez sur smartphone, tablette, ordinateur ou smart TV.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Plans de prix -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">Nos formules Crunchyroll</h2>
+    
+    <div class="row g-4 justify-content-center">
+        <!-- Plan 1 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>1 Mois</h3>
+                    <div class="pricing-price" style="color: #F47521;">12 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Sans publicités</li>
+                        <li><i class="fas fa-check"></i> Nouveaux épisodes en simulcast</li>
+                        <li><i class="fas fa-check"></i> Accès à tout le catalogue</li>
+                        <li><i class="fas fa-check"></i> Support inclus</li>
+                    </ul>
+                    <button class="btn text-white mt-auto" style="background-color: #F47521;" data-bs-toggle="modal" data-bs-target="#buyCrunchyrollModal" data-plan="1month" data-price="12">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 3 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center popular">
+                <span class="popular-badge">Populaire</span>
+                <div class="pricing-header">
+                    <h3>3 Mois</h3>
+                    <div class="pricing-price" style="color: #F47521;">30 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Sans publicités</li>
+                        <li><i class="fas fa-check"></i> Nouveaux épisodes en simulcast</li>
+                        <li><i class="fas fa-check"></i> Accès à tout le catalogue</li>
+                        <li><i class="fas fa-check"></i> Support prioritaire</li>
+                    </ul>
+                    <button class="btn text-white mt-auto" style="background-color: #F47521;" data-bs-toggle="modal" data-bs-target="#buyCrunchyrollModal" data-plan="3months" data-price="30">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 6 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>6 Mois</h3>
+                    <div class="pricing-price" style="color: #F47521;">55 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Sans publicités</li>
+                        <li><i class="fas fa-check"></i> Nouveaux épisodes en simulcast</li>
+                        <li><i class="fas fa-check"></i> Accès à tout le catalogue</li>
+                        <li><i class="fas fa-check"></i> Support VIP</li>
+                    </ul>
+                    <button class="btn text-white mt-auto" style="background-color: #F47521;" data-bs-toggle="modal" data-bs-target="#buyCrunchyrollModal" data-plan="6months" data-price="55">Acheter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal d'achat pour Crunchyroll -->
+<div class="modal fade" id="buyCrunchyrollModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: #F47521;">
+                <h5 class="modal-title">Acheter Crunchyroll Premium</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'payer' %}" id="crunchyrollPaymentForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="product" value="Crunchyroll Premium">
+                    <input type="hidden" name="plan" id="selectedCrunchyrollPlan" value="3months">
+                    <input type="hidden" name="price" id="selectedCrunchyrollPrice" value="30">
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="crunchyroll-first-name" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="crunchyroll-first-name" name="first_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="crunchyroll-last-name" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="crunchyroll-last-name" name="last_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="crunchyroll-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="crunchyroll-email" name="email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="crunchyroll-phone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="crunchyroll-phone" name="phone" placeholder="+216 XX XXX XXX" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <h5 class="mt-3">Informations de paiement</h5>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="crunchyroll-card-number" class="form-label">Numéro de carte</label>
+                            <input type="text" class="form-control card-number-input" id="crunchyroll-card-number" name="numero" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="crunchyroll-card-expiry" class="form-label">Date d'expiration</label>
+                            <input type="text" class="form-control card-expiry-input" id="crunchyroll-card-expiry" name="expiration" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="crunchyroll-card-cvc" class="form-label">CVC</label>
+                            <input type="text" class="form-control card-cvc-input" id="crunchyroll-card-cvc" name="cvc" placeholder="XXX" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="crunchyroll-card-name" class="form-label">Nom sur la carte</label>
+                            <input type="text" class="form-control" id="crunchyroll-card-name" name="nom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">Récapitulatif</h5>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Crunchyroll Premium (3 mois)</span>
+                                    <span class="fw-bold" id="crunchyrollPlanDisplay">30 TND</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Frais de service</span>
+                                    <span>0 TND</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold">Total</span>
+                                    <span class="fw-bold" id="crunchyrollTotalDisplay">30 TND</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn text-white btn-lg w-100" style="background-color: #F47521;">Payer maintenant</button>
+                        <div class="text-center mt-3">
+                            <small class="text-muted">En cliquant sur "Payer", vous acceptez nos conditions d'utilisation.</small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mise à jour du formulaire de paiement en fonction du plan sélectionné
+        var buyCrunchyrollModal = document.getElementById('buyCrunchyrollModal');
+        buyCrunchyrollModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var plan = button.getAttribute('data-plan') || '3months';
+            var price = button.getAttribute('data-price') || '30';
+            var planText = '';
+            
+            // Mise à jour des champs cachés
+            document.getElementById('selectedCrunchyrollPlan').value = plan;
+            document.getElementById('selectedCrunchyrollPrice').value = price;
+            
+            // Mise à jour du texte récapitulatif
+            switch(plan) {
+                case '1month':
+                    planText = 'Crunchyroll Premium (1 mois)';
+                    break;
+                case '3months':
+                    planText = 'Crunchyroll Premium (3 mois)';
+                    break;
+                case '6months':
+                    planText = 'Crunchyroll Premium (6 mois)';
+                    break;
+            }
+            
+            // Mise à jour du récapitulatif
+            var planDisplay = document.getElementById('crunchyrollPlanDisplay');
+            var totalDisplay = document.getElementById('crunchyrollTotalDisplay');
+            
+            if (planDisplay) {
+                planDisplay.textContent = price + ' TND';
+            }
+            
+            if (totalDisplay) {
+                totalDisplay.textContent = price + ' TND';
+            }
+        });
+        
+        // Formatage des champs de carte
+        document.querySelectorAll('.card-number-input').forEach(function(input) {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 16) value = value.slice(0, 16);
+                
+                // Formatage par groupes de 4 chiffres
+                let formattedValue = '';
+                for (let i = 0; i < value.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formattedValue += ' ';
+                    }
+                    formattedValue += value[i];
+                }
+                e.target.value = formattedValue;
+            });
+        });
+        
+        document.querySelectorAll('.card-expiry-input').forEach(function(input) {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 4) value = value.slice(0, 4);
+                
+                if (value.length > 2) {
+                    e.target.value = value.slice(0, 2) + '/' + value.slice(2);
+                } else {
+                    e.target.value = value;
+                }
+            });
+        });
+        
+        document.querySelectorAll('.card-cvc-input').forEach(function(input) {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 3) value = value.slice(0, 3);
+                e.target.value = value;
+            });
+        });
+    });
+</script>
+{% endblock %}

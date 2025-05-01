@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Apple TV+ Premium - Limitless{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="service-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Apple TV+ Premium</h1>
+                <p class="lead mb-4">Découvrez des séries et films originaux exclusifs d'Apple TV+. Des histoires captivantes, des productions de qualité et des contenus inédits.</p>
+                <a href="#pricing" class="btn btn-primary btn-lg" style="background-color: #000000; border-color: #000000;">Acheter maintenant</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'images/apple-tv-plus.jpg' %}" alt="Apple TV+ Premium" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Catalog Section -->
+<section class="catalog-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Découvrez le catalogue Apple TV+</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/apple-tv-plus.jpg' %}" class="card-img-top" alt="Séries Exclusives">
+                    <div class="card-body">
+                        <h3 class="card-title">Séries Exclusives</h3>
+                        <p class="card-text">Des séries originales primées et des productions exclusives.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/apple-tv-plus.jpg' %}" class="card-img-top" alt="Films Originaux">
+                    <div class="card-body">
+                        <h3 class="card-title">Films Originaux</h3>
+                        <p class="card-text">Des films primés et des productions cinématographiques exclusives.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/apple-tv-plus.jpg' %}" class="card-img-top" alt="Documentaires">
+                    <div class="card-body">
+                        <h3 class="card-title">Documentaires</h3>
+                        <p class="card-text">Des documentaires captivants et des contenus éducatifs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" class="pricing-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Nos offres Apple TV+</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">1 Mois</h3>
+                        <div class="price-tag">
+                            <span class="price">15 TND</span>
+                            <span class="period">/mois</span>
+                        </div>
+                        <ul class="list-unstyled mt-4">
+                            <li class="mb-2">✓ Accès illimité</li>
+                            <li class="mb-2">✓ Qualité 4K HDR</li>
+                            <li class="mb-2">✓ Téléchargement</li>
+                            <li class="mb-2">✓ Multi-appareils</li>
+                        </ul>
+                        <button class="btn btn-primary w-100 mt-4" style="background-color: #000000; border-color: #000000;" onclick="openPurchaseModal('Apple TV+', '1 Mois', 15)">Acheter</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="popular-badge">Populaire</div>
+                        <h3 class="card-title">3 Mois</h3>
+                        <div class="price-tag">
+                            <span class="price">35 TND</span>
+                            <span class="period">/3 mois</span>
+                        </div>
+                        <ul class="list-unstyled mt-4">
+                            <li class="mb-2">✓ Accès illimité</li>
+                            <li class="mb-2">✓ Qualité 4K HDR</li>
+                            <li class="mb-2">✓ Téléchargement</li>
+                            <li class="mb-2">✓ Multi-appareils</li>
+                            <li class="mb-2">✓ Économisez 10 TND</li>
+                        </ul>
+                        <button class="btn btn-primary w-100 mt-4" style="background-color: #000000; border-color: #000000;" onclick="openPurchaseModal('Apple TV+', '3 Mois', 35)">Acheter</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">6 Mois</h3>
+                        <div class="price-tag">
+                            <span class="price">60 TND</span>
+                            <span class="period">/6 mois</span>
+                        </div>
+                        <ul class="list-unstyled mt-4">
+                            <li class="mb-2">✓ Accès illimité</li>
+                            <li class="mb-2">✓ Qualité 4K HDR</li>
+                            <li class="mb-2">✓ Téléchargement</li>
+                            <li class="mb-2">✓ Multi-appareils</li>
+                            <li class="mb-2">✓ Économisez 30 TND</li>
+                        </ul>
+                        <button class="btn btn-primary w-100 mt-4" style="background-color: #000000; border-color: #000000;" onclick="openPurchaseModal('Apple TV+', '6 Mois', 60)">Acheter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Purchase Modal -->
+<div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="purchaseModalLabel">Acheter <span id="modalServiceName"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="purchaseForm" method="post" action="{% url 'process_payment' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="service" id="serviceInput">
+                    <input type="hidden" name="plan" id="planInput">
+                    <input type="hidden" name="price" id="priceInput">
+                    
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Téléphone</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="card_number" class="form-label">Numéro de carte</label>
+                        <input type="text" class="form-control" id="card_number" name="card_number" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="expiry" class="form-label">Date d'expiration</label>
+                            <input type="text" class="form-control" id="expiry" name="expiry" placeholder="MM/AA" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cvc" class="form-label">CVC</label>
+                            <input type="text" class="form-control" id="cvc" name="cvc" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card_name" class="form-label">Nom sur la carte</label>
+                        <input type="text" class="form-control" id="card_name" name="card_name" required>
+                    </div>
+                    
+                    <div class="text-center">
+                        <p class="mb-3">Total à payer: <span id="modalPrice" class="fw-bold"></span> TND</p>
+                        <button type="submit" class="btn btn-primary" style="background-color: #000000; border-color: #000000;">Payer maintenant</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function openPurchaseModal(service, plan, price) {
+    document.getElementById('modalServiceName').textContent = service + ' - ' + plan;
+    document.getElementById('serviceInput').value = service;
+    document.getElementById('planInput').value = plan;
+    document.getElementById('priceInput').value = price;
+    document.getElementById('modalPrice').textContent = price;
+    
+    var modal = new bootstrap.Modal(document.getElementById('purchaseModal'));
+    modal.show();
+}
+</script>
+{% endblock %} 

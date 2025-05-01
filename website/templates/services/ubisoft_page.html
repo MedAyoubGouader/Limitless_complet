@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ubisoft+ - Limitless{% endblock %}
+
+{% block content %}
+<!-- En-tête de l'offre -->
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-3" style="color: #000000;">Ubisoft+</h1>
+            <p class="lead mb-4">
+                Accédez à la bibliothèque complète des jeux Ubisoft. Profitez de jeux en avant-première, 
+                de contenus exclusifs et d'une expérience de jeu premium à un prix imbattable.
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                <button class="btn btn-primary btn-lg px-4" style="background-color: #000000;" data-bs-toggle="modal" data-bs-target="#buyUbisoftModal">
+                    <i class="fas fa-shopping-cart me-2"></i> Acheter maintenant
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="{% static 'images/ubisoft.jpg' %}" alt="Ubisoft+" class="img-fluid rounded-4 shadow">
+        </div>
+    </div>
+</div>
+
+<!-- Catalogue Ubisoft+ -->
+<section class="container mb-5">
+    <h2 class="text-center mb-4">Des avantages exclusifs</h2>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/ubisoft-catalog1.jpg' %}" class="card-img-top" alt="Jeux Ubisoft">
+                <div class="card-body">
+                    <h4 class="card-title">Jeux Ubisoft</h4>
+                    <p class="card-text">Accédez à plus de 100 jeux Ubisoft, y compris les dernières sorties.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/ubisoft-catalog2.jpg' %}" class="card-img-top" alt="Avant-premières">
+                <div class="card-body">
+                    <h4 class="card-title">Avant-premières</h4>
+                    <p class="card-text">Jouez aux nouveaux jeux Ubisoft avant leur sortie officielle.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/ubisoft-catalog3.jpg' %}" class="card-img-top" alt="Contenus Exclusifs">
+                <div class="card-body">
+                    <h4 class="card-title">Contenus Exclusifs</h4>
+                    <p class="card-text">Profitez de contenus exclusifs et de bonus spéciaux.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Plans de prix -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">Nos formules Ubisoft+</h2>
+    
+    <div class="row g-4 justify-content-center">
+        <!-- Plan 1 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>1 Mois</h3>
+                    <div class="pricing-price" style="color: #000000;">25 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Bibliothèque complète</li>
+                        <li><i class="fas fa-check"></i> Avant-premières</li>
+                        <li><i class="fas fa-check"></i> Contenus exclusifs</li>
+                        <li><i class="fas fa-check"></i> Support inclus</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #000000;" data-bs-toggle="modal" data-bs-target="#buyUbisoftModal" data-plan="1month" data-price="25">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 3 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center popular">
+                <span class="popular-badge">Populaire</span>
+                <div class="pricing-header">
+                    <h3>3 Mois</h3>
+                    <div class="pricing-price" style="color: #000000;">65 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Bibliothèque complète</li>
+                        <li><i class="fas fa-check"></i> Avant-premières</li>
+                        <li><i class="fas fa-check"></i> Contenus exclusifs</li>
+                        <li><i class="fas fa-check"></i> Support prioritaire</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #000000;" data-bs-toggle="modal" data-bs-target="#buyUbisoftModal" data-plan="3months" data-price="65">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 6 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>6 Mois</h3>
+                    <div class="pricing-price" style="color: #000000;">120 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> Bibliothèque complète</li>
+                        <li><i class="fas fa-check"></i> Avant-premières</li>
+                        <li><i class="fas fa-check"></i> Contenus exclusifs</li>
+                        <li><i class="fas fa-check"></i> Support VIP</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #000000;" data-bs-toggle="modal" data-bs-target="#buyUbisoftModal" data-plan="6months" data-price="120">Acheter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal d'achat -->
+<div class="modal fade" id="buyUbisoftModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: #000000;">
+                <h5 class="modal-title">Acheter Ubisoft+</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'submit_request' %}" id="ubisoftPaymentForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="product" value="Ubisoft+">
+                    <input type="hidden" name="plan" id="selectedUbisoftPlan" value="3months">
+                    <input type="hidden" name="price" id="selectedUbisoftPrice" value="65">
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="ubisoft-first-name" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="ubisoft-first-name" name="first_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ubisoft-last-name" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="ubisoft-last-name" name="last_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ubisoft-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="ubisoft-email" name="email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ubisoft-phone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="ubisoft-phone" name="phone" placeholder="+216 XX XXX XXX" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <h5 class="mt-3">Informations de paiement</h5>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="ubisoft-card-number" class="form-label">Numéro de carte</label>
+                            <input type="text" class="form-control card-number-input" id="ubisoft-card-number" name="numero" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="ubisoft-card-expiry" class="form-label">Date d'expiration</label>
+                            <input type="text" class="form-control card-expiry-input" id="ubisoft-card-expiry" name="expiration" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="ubisoft-card-cvc" class="form-label">CVC</label>
+                            <input type="text" class="form-control card-cvc-input" id="ubisoft-card-cvc" name="cvc" placeholder="XXX" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="ubisoft-card-name" class="form-label">Nom sur la carte</label>
+                            <input type="text" class="form-control" id="ubisoft-card-name" name="nom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary w-100" style="background-color: #000000;">
+                            Payer <span id="ubisoftTotalDisplay">65 TND</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mise à jour du formulaire de paiement en fonction du plan sélectionné
+        var buyModal = document.getElementById('buyUbisoftModal');
+        buyModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var plan = button.getAttribute('data-plan') || '3months';
+            var price = button.getAttribute('data-price') || '65';
+            
+            // Mise à jour des champs cachés
+            document.getElementById('selectedUbisoftPlan').value = plan;
+            document.getElementById('selectedUbisoftPrice').value = price;
+            
+            // Mise à jour du récapitulatif
+            var totalDisplay = document.getElementById('ubisoftTotalDisplay');
+            if (totalDisplay) {
+                totalDisplay.textContent = price + ' TND';
+            }
+        });
+    });
+</script>
+{% endblock %} 

@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}À propos - Limitless{% endblock %}
+
+{% block content %}
+<div class="about-page">
+    <div class="about-header">
+        <h1>À propos de Limitless</h1>
+        <p class="about-tagline">
+            Votre marketplace pour les comptes premium.
+        </p>
+    </div>
+    
+    <div class="about-section">
+        <h2>Notre histoire</h2>
+        <p>
+            Limitless a été fondé en 2025 par une équipe passionnée de technophiles tunisiens. 
+            Notre vision était simple : rendre accessible les services de streaming et les plateformes 
+            numériques premium à des prix abordables pour tous les tunisiens.
+        </p>
+        <p>
+            Depuis notre création, nous avons le but d'aidé des clients à accéder à leurs 
+            plateformes favorites à des prix défiant toute concurrence, tout en garantissant 
+            un service client exceptionnel et une sécurité optimale.
+        </p>
+    </div>
+    
+    <div class="about-section">
+        <h2>Notre équipe</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <img src="{% static 'images/ayoub.jpg' %}" alt="Ayoub" class="team-photo">
+                <h3>Ayoub</h3>
+                <p class="team-role">Fondateur 2 </p>
+                <p class="team-bio">
+                    Passionné de technologie et d'entrepreneuriat, Ayoub a créé Limitless pour 
+                    démocratiser l'accès aux services premium.
+                </p>
+            </div>
+            
+            <div class="team-member">
+                <img src="{% static 'images/mehdi.jpg' %}" alt="Mehdi" class="team-photo">
+                <h3>Mehdi</h3>
+                <p class="team-role">Fondateur 3</p>
+                <p class="team-bio">
+                    Expert en Cloud et en sécurité informatique, Mehdi assure la 
+                    fiabilité et la sécurité de notre plateforme.
+                </p>
+            </div>
+            
+            <div class="team-member">
+                <img src="{% static 'images/bellil.jpg' %}" alt="Bellil" class="team-photo">
+                <h3>Bellil</h3>
+                <p class="team-role">Fondateur 1</p>
+                <p class="team-bio">
+                    Spécialiste en developpement web, Bellil développe notre présence en ligne 
+                    et notre image de marque.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="about-section">
+        <h2>Nos valeurs</h2>
+        <div class="values-container">
+            <div class="value-item">
+                <h3>Accessibilité</h3>
+                <p>
+                    Nous croyons que chacun devrait pouvoir accéder à du contenu premium 
+                    sans se ruiner. Nos prix sont pensés pour être accessibles à tous.
+                </p>
+            </div>
+            
+            <div class="value-item">
+                <h3>Qualité</h3>
+                <p>
+                    Nous garantissons des comptes de haute qualité avec un service stable 
+                    et une assistance en cas de problème.
+                </p>
+            </div>
+            
+            <div class="value-item">
+                <h3>Sécurité</h3>
+                <p>
+                    Votre sécurité et confidentialité sont nos priorités. Nous utilisons 
+                    des méthodes de paiement sécurisées et protégeons vos données personnelles.
+                </p>
+            </div>
+            
+            <div class="value-item">
+                <h3>Innovation</h3>
+                <p>
+                    Nous sommes constamment à la recherche de nouvelles solutions et services 
+                    pour améliorer votre expérience.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="about-section contact-section">
+        <h2>Contactez-nous</h2>
+        <p>
+            Vous avez des questions ou des suggestions ? N'hésitez pas à nous contacter !
+        </p>
+        <div class="contact-info">
+            <p><strong>Email:</strong> contact@limitless.com</p>
+            <p><strong>Téléphone:</strong> +21694128304</p>
+            <p><strong>Adresse:</strong> Tunis, Tunisie</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .about-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    
+    .about-header h1 {
+        font-size: 3rem;
+        color: #082567;
+        margin-bottom: 20px;
+    }
+    
+    .about-tagline {
+        font-size: 1.5rem;
+        color: #555;
+    }
+    
+    .about-section {
+        margin-bottom: 60px;
+    }
+    
+    .about-section h2 {
+        font-size: 2rem;
+        color: #082567;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    
+    .about-section h2:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: #D5CBBE;
+    }
+    
+    .about-section p {
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+    
+    .team-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+    }
+    
+    .team-member {
+        width: 250px;
+        text-align: center;
+        background: white;
+        border-radius: 10px;
+        padding: 30px 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .team-member:hover {
+        transform: translateY(-10px);
+    }
+    
+    .team-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 5px solid #D5CBBE;
+    }
+    
+    .team-member h3 {
+        font-size: 1.5rem;
+        color: #082567;
+        margin-bottom: 5px;
+    }
+    
+    .team-role {
+        color: #123458;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    
+    .team-bio {
+        font-size: 0.9rem;
+    }
+    
+    .values-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+    }
+    
+    .value-item {
+</style>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Test Images{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-8">Test des Images</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Netflix</h2>
+            <img src="{% static 'images/netflix.jpg' %}" alt="Netflix" class="w-full h-48 object-cover rounded-lg">
+            <p class="mt-4 text-gray-600">Chemin: {% static 'images/netflix.jpg' %}</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Spotify</h2>
+            <img src="{% static 'images/spotify.gif' %}" alt="Spotify" class="w-full h-48 object-cover rounded-lg">
+            <p class="mt-4 text-gray-600">Chemin: {% static 'images/spotify.gif' %}</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Crunchyroll</h2>
+            <img src="{% static 'images/crunchyroll.jpg' %}" alt="Crunchyroll" class="w-full h-48 object-cover rounded-lg">
+            <p class="mt-4 text-gray-600">Chemin: {% static 'images/crunchyroll.jpg' %}</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Steam</h2>
+            <img src="{% static 'images/steam1.png' %}" alt="Steam" class="w-full h-48 object-cover rounded-lg">
+            <p class="mt-4 text-gray-600">Chemin: {% static 'images/steam1.png' %}</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Prime</h2>
+            <img src="{% static 'images/prime1.png' %}" alt="Prime" class="w-full h-48 object-cover rounded-lg">
+            <p class="mt-4 text-gray-600">Chemin: {% static 'images/prime1.png' %}</p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

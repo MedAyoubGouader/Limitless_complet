@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ticket #{{ ticket.id|truncatechars:8 }} - Limitless{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h1 class="h3 mb-0">Ticket #{{ ticket.id|truncatechars:8 }}</h1>
+                        <span class="badge {% if ticket.status == 'open' %}bg-warning{% elif ticket.status == 'resolved' %}bg-success{% else %}bg-secondary{% endif %}">
+                            {{ ticket.get_status_display }}
+                        </span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h2 class="h5 mb-3">{{ ticket.subject }}</h2>
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-clock me-2"></i>
+                            Créé le {{ ticket.created_at|date:"d/m/Y à H:i" }}
+                        </p>
+                    </div>
+                    
+                    <div class="card bg-light mb-4">
+                        <div class="card-body">
+                            <h3 class="h6 mb-3">Message</h3>
+                            <p class="mb-0">{{ ticket.message }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'support_ticket_list' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Retour
+                        </a>
+                        {% if ticket.status == 'open' %}
+                        <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#closeTicketModal">
+                            <i class="fas fa-times me-2"></i>Fermer le ticket
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour fermer le ticket -->
+<div class="modal fade" id="closeTicketModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Fermer le ticket</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Êtes-vous sûr de vouloir fermer ce ticket ? Cette action est irréversible.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <form method="post" action="{% url 'close_ticket' ticket.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Fermer le ticket</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

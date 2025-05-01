@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Foire Aux Questions - Limitless{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-5">Foire Aux Questions (FAQ)</h1>
+
+    <div class="row">
+        <div class="col-lg-3 mb-4">
+            <div class="list-group sticky-top" style="top: 2rem;">
+                <a href="#general" class="list-group-item list-group-item-action">Questions générales</a>
+                <a href="#accounts" class="list-group-item list-group-item-action">Comptes et services</a>
+                <a href="#payment" class="list-group-item list-group-item-action">Paiement et prix</a>
+                <a href="#support" class="list-group-item list-group-item-action">Support et assistance</a>
+            </div>
+        </div>
+        
+        <div class="col-lg-9">
+            <!-- Questions générales -->
+            <div id="general" class="mb-5">
+                <h2 class="h3 mb-4 border-bottom pb-2">Questions générales</h2>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Qu'est-ce que Limitless ?</h3>
+                        <p class="card-text">Limitless est une marketplace tunisienne spécialisée dans la vente de comptes premium pour divers services de streaming comme Netflix, Spotify, Disney+, et Crunchyroll. Nous proposons des comptes garantis à des prix compétitifs.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Comment fonctionne votre service ?</h3>
+                        <p class="card-text">Notre service est simple : vous choisissez le type de compte premium que vous souhaitez, vous effectuez le paiement, et nous vous envoyons les identifiants de connexion par email. Vous pouvez ensuite profiter immédiatement du service choisi.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Êtes-vous officiellement affiliés aux services que vous proposez ?</h3>
+                        <p class="card-text">Non, Limitless n'est pas officiellement affilié à Netflix, Spotify, Disney+ ou tout autre service proposé sur notre plateforme. Nous agissons en tant que revendeur indépendant de comptes premium.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Comptes et services -->
+            <div id="accounts" class="mb-5">
+                <h2 class="h3 mb-4 border-bottom pb-2">Comptes et services</h2>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Les comptes sont-ils partagés ou personnels ?</h3>
+                        <p class="card-text">Les comptes que nous proposons sont partagés, ce qui signifie que vous accédez à un compte premium existant. Vous pouvez créer votre propre profil sur ce compte pour une expérience personnalisée.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Puis-je modifier les informations du compte (email, mot de passe) ?</h3>
+                        <p class="card-text">Non, vous ne pouvez pas modifier les informations principales du compte comme l'email ou le mot de passe. Cependant, vous pouvez créer et personnaliser votre propre profil sur le compte.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Que se passe-t-il si le compte cesse de fonctionner ?</h3>
+                        <p class="card-text">Tous nos comptes sont garantis pour la durée que vous avez achetée. Si vous rencontrez un problème avec votre compte, contactez notre service client et nous vous fournirons un nouveau compte rapidement.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Combien d'appareils peuvent utiliser le compte simultanément ?</h3>
+                        <p class="card-text">Cela dépend du service. Par exemple, les comptes Netflix Premium permettent jusqu'à 4 écrans simultanés, tandis que les comptes Spotify Family permettent jusqu'à 6 utilisateurs. Les détails spécifiques sont indiqués sur la page de chaque service.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Paiement et prix -->
+            <div id="payment" class="mb-5">
+                <h2 class="h3 mb-4 border-bottom pb-2">Paiement et prix</h2>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Quels modes de paiement acceptez-vous ?</h3>
+                        <p class="card-text">Nous acceptons divers modes de paiement, notamment les cartes bancaires, les virements bancaires et les paiements mobiles via les services disponibles en Tunisie.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Pourquoi vos prix sont-ils si bas par rapport aux abonnements officiels ?</h3>
+                        <p class="card-text">Nous sommes en mesure d'offrir des prix compétitifs grâce à notre modèle commercial optimisé et à nos partenariats stratégiques. Cela nous permet de proposer des comptes premium à une fraction du prix officiel.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Y a-t-il des frais cachés ?</h3>
+                        <p class="card-text">Non, il n'y a aucun frais caché. Le prix que vous voyez est le prix que vous payez. Il n'y a pas de frais supplémentaires ou de coûts récurrents inattendus.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Comment fonctionne le renouvellement des comptes ?</h3>
+                        <p class="card-text">Le renouvellement n'est pas automatique. Avant l'expiration de votre période d'accès, nous vous enverrons un rappel par email. Vous pourrez alors décider de renouveler votre compte en effectuant un nouveau paiement.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support et assistance -->
+            <div id="support" class="mb-5">
+                <h2 class="h3 mb-4 border-bottom pb-2">Support et assistance</h2>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Comment puis-je contacter le service client ?</h3>
+                        <p class="card-text">Vous pouvez contacter notre service client par email à contact@limitless.com ou par téléphone au +216 XX XXX XXX. Nous sommes disponibles 7j/7 pour répondre à vos questions.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Quel est le délai de réponse du service client ?</h3>
+                        <p class="card-text">Notre équipe s'efforce de répondre à toutes les demandes dans un délai de 24 heures. Pour les problèmes urgents, nous traitons généralement les demandes en quelques heures.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Proposez-vous une garantie de remboursement ?</h3>
+                        <p class="card-text">Si nous ne parvenons pas à fournir un compte fonctionnel ou à résoudre un problème technique de notre côté, nous proposons un remboursement complet. Contactez notre service client pour plus de détails.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Comment puis-je signaler un problème avec mon compte ?</h3>
+                        <p class="card-text">Si vous rencontrez un problème avec votre compte, connectez-vous à votre compte Limitless et utilisez la section "Support" pour soumettre un ticket. Vous pouvez également nous contacter directement par email ou téléphone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Smooth scrolling for anchor links
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('.list-group-item');
+        
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+                
+                // Update active class
+                links.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Set first item as active by default
+        links[0].classList.add('active');
+    });
+</script>
+{% endblock %} 

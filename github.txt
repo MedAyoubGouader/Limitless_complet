@@ -1,0 +1,16 @@
+open cmd then cd to the folder
+#create
+git init
+git add .
+git commit -m "comment"
+git branch -M main
+git remote add origin https://github.com/username/project.git
+git push -u origin main
+#modify
+git init
+git add .
+git commit -m "comment"
+git push origin main
+#remove
+enter the repository in github -> go to settings -> delete repository(last option)
+<link rel="icon" type="images/x-icon" sizes="32x32" href="{% static 'images/OIP.jpg' %}"> <!-- Corrected path to static file -->

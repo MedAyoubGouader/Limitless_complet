@@ -1,0 +1,321 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Disney+ Premium - Limitless{% endblock %}
+
+{% block content %}
+<!-- En-tête de l'offre -->
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-3" style="color: #0063e5;">Disney+</h1>
+            <p class="lead mb-4">
+                Accédez à un monde de divertissement avec Disney+. Films, séries et documentaires 
+                de Disney, Pixar, Marvel, Star Wars et National Geographic, le tout à un prix exceptionnel.
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                <button class="btn btn-primary btn-lg px-4" style="background-color: #0063e5;" data-bs-toggle="modal" data-bs-target="#buyDisneyModal">
+                    <i class="fas fa-shopping-cart me-2"></i> Acheter maintenant
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="{% static 'images/disney.jpg' %}" alt="Disney+" class="img-fluid rounded-4 shadow">
+        </div>
+    </div>
+</div>
+
+<!-- Catalogue Disney+ -->
+<section class="container mb-5">
+    <h2 class="text-center mb-4">Un catalogue exceptionnel</h2>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/disney-catalog1.jpg' %}" class="card-img-top" alt="Disney Catalogue">
+                <div class="card-body">
+                    <h4 class="card-title">Disney & Pixar</h4>
+                    <p class="card-text">Des classiques animés aux derniers films Pixar, retrouvez tous vos personnages préférés.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/disney-catalog2.jpg' %}" class="card-img-top" alt="Marvel Catalogue">
+                <div class="card-body">
+                    <h4 class="card-title">Marvel</h4>
+                    <p class="card-text">L'univers cinématographique Marvel au complet et des séries exclusives.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/disney-catalog3.jpg' %}" class="card-img-top" alt="Star Wars Catalogue">
+                <div class="card-body">
+                    <h4 class="card-title">Star Wars</h4>
+                    <p class="card-text">Toute la saga Star Wars et des séries originales comme The Mandalorian.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Plans de prix -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">Nos formules Disney+</h2>
+    
+    <div class="row g-4 justify-content-center">
+        <!-- Plan 1 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>1 Mois</h3>
+                    <div class="pricing-price" style="color: #0063e5;">18 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> 4 écrans simultanés</li>
+                        <li><i class="fas fa-check"></i> Qualité 4K HDR</li>
+                        <li><i class="fas fa-check"></i> Téléchargements illimités</li>
+                        <li><i class="fas fa-check"></i> Support inclus</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #0063e5;" data-bs-toggle="modal" data-bs-target="#buyDisneyModal" data-plan="1month" data-price="18">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 3 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center popular">
+                <span class="popular-badge">Populaire</span>
+                <div class="pricing-header">
+                    <h3>3 Mois</h3>
+                    <div class="pricing-price" style="color: #0063e5;">45 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> 4 écrans simultanés</li>
+                        <li><i class="fas fa-check"></i> Qualité 4K HDR</li>
+                        <li><i class="fas fa-check"></i> Téléchargements illimités</li>
+                        <li><i class="fas fa-check"></i> Support prioritaire</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #0063e5;" data-bs-toggle="modal" data-bs-target="#buyDisneyModal" data-plan="3months" data-price="45">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 6 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>6 Mois</h3>
+                    <div class="pricing-price" style="color: #0063e5;">80 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> 4 écrans simultanés</li>
+                        <li><i class="fas fa-check"></i> Qualité 4K HDR</li>
+                        <li><i class="fas fa-check"></i> Téléchargements illimités</li>
+                        <li><i class="fas fa-check"></i> Support VIP</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #0063e5;" data-bs-toggle="modal" data-bs-target="#buyDisneyModal" data-plan="6months" data-price="80">Acheter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal d'achat pour Disney+ -->
+<div class="modal fade" id="buyDisneyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: #0063e5;">
+                <h5 class="modal-title">Acheter Disney+</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'submit_request' %}" id="disneyPaymentForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="product" value="Disney+">
+                    <input type="hidden" name="plan" id="selectedDisneyPlan" value="3months">
+                    <input type="hidden" name="price" id="selectedDisneyPrice" value="45">
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="disney-first-name" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="disney-first-name" name="first_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="disney-last-name" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="disney-last-name" name="last_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="disney-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="disney-email" name="email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="disney-phone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="disney-phone" name="phone" placeholder="+216 XX XXX XXX" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <h5 class="mt-3">Informations de paiement</h5>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="disney-card-number" class="form-label">Numéro de carte</label>
+                            <input type="text" class="form-control card-number-input" id="disney-card-number" name="card_number" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="disney-card-expiry" class="form-label">Date d'expiration</label>
+                            <input type="text" class="form-control card-expiry-input" id="disney-card-expiry" name="card_expiry" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="disney-card-cvc" class="form-label">CVC</label>
+                            <input type="text" class="form-control card-cvc-input" id="disney-card-cvc" name="card_cvc" placeholder="XXX" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">Récapitulatif</h5>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Disney+ (3 mois)</span>
+                                    <span class="fw-bold" id="disneyPlanDisplay">45 TND</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Frais de service</span>
+                                    <span>0 TND</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold">Total</span>
+                                    <span class="fw-bold" id="disneyTotalDisplay">45 TND</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #0063e5;">Payer maintenant</button>
+                        <div class="text-center mt-3">
+                            <small class="text-muted">En cliquant sur "Payer", vous acceptez nos conditions d'utilisation.</small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mise à jour du formulaire de paiement en fonction du plan sélectionné
+        var buyDisneyModal = document.getElementById('buyDisneyModal');
+        buyDisneyModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var plan = button.getAttribute('data-plan') || '3months';
+            var price = button.getAttribute('data-price') || '45';
+            var planText = '';
+            
+            // Mise à jour des champs cachés
+            document.getElementById('selectedDisneyPlan').value = plan;
+            document.getElementById('selectedDisneyPrice').value = price;
+            
+            // Mise à jour du texte récapitulatif
+            switch(plan) {
+                case '1month':
+                    planText = 'Disney+ (1 mois)';
+                    break;
+                case '3months':
+                    planText = 'Disney+ (3 mois)';
+                    break;
+                case '6months':
+                    planText = 'Disney+ (6 mois)';
+                    break;
+            }
+            
+            // Mise à jour du récapitulatif
+            var planDisplay = document.getElementById('disneyPlanDisplay');
+            var totalDisplay = document.getElementById('disneyTotalDisplay');
+            
+            if (planDisplay) {
+                planDisplay.textContent = price + ' TND';
+            }
+            
+            if (totalDisplay) {
+                totalDisplay.textContent = price + ' TND';
+            }
+        });
+        
+        // Intercepter la soumission du formulaire pour utiliser l'API de paiement
+        document.getElementById('disneyPaymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupérer les données du formulaire
+            var formData = new FormData(this);
+            var paymentData = {
+                cardNumber: formData.get('card_number').replace(/\s/g, ''),
+                cardExpiry: formData.get('card_expiry'),
+                cardCVC: formData.get('card_cvc'),
+                amount: formData.get('price'),
+                product: formData.get('product'),
+                plan: formData.get('plan'),
+                customerName: formData.get('first_name') + ' ' + formData.get('last_name'),
+                customerEmail: formData.get('email'),
+                customerPhone: formData.get('phone')
+            };
+            
+            // Appel à l'API de paiement
+            processPayment(paymentData, this);
+        });
+    });
+    
+    // Fonction pour traiter le paiement
+    function processPayment(paymentData, form) {
+        // Afficher un indicateur de chargement
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Traitement en cours...';
+        
+        // Appel à l'API de paiement (fictif ou réel)
+        fetch('/payer/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify(paymentData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Paiement réussi
+                window.location.href = '/success/?order_id=' + data.order_id;
+            } else {
+                // Échec du paiement
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                alert('Erreur de paiement: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+            alert('Une erreur est survenue lors du traitement du paiement.');
+        });
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}HBO Max Premium - Limitless{% endblock %}
+
+{% block content %}
+<!-- En-tête de l'offre -->
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-3" style="color: #5f2eea;">HBO Max</h1>
+            <p class="lead mb-4">
+                Accédez à l'univers HBO Max avec ses séries exclusives, films Warner Bros et contenus originaux.
+                Profitez d'une expérience de streaming premium à un prix imbattable.
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                <button class="btn btn-primary btn-lg px-4" style="background-color: #5f2eea;" data-bs-toggle="modal" data-bs-target="#buyHBOModal">
+                    <i class="fas fa-shopping-cart me-2"></i> Acheter maintenant
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="{% static 'images/hbomax.jpg' %}" alt="HBO Max" class="img-fluid rounded-4 shadow">
+        </div>
+    </div>
+</div>
+
+<!-- Catalogue HBO Max -->
+<section class="container mb-5">
+    <h2 class="text-center mb-4">Un catalogue exceptionnel</h2>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/hbo-catalog1.jpg' %}" class="card-img-top" alt="Séries HBO">
+                <div class="card-body">
+                    <h4 class="card-title">Séries HBO</h4>
+                    <p class="card-text">Game of Thrones, Westworld, Succession et toutes les séries HBO.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/hbo-catalog2.jpg' %}" class="card-img-top" alt="Films Warner Bros">
+                <div class="card-body">
+                    <h4 class="card-title">Films Warner Bros</h4>
+                    <p class="card-text">Les derniers films Warner Bros et un catalogue de films classiques.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'images/hbo-catalog3.jpg' %}" class="card-img-top" alt="Contenus Originaux">
+                <div class="card-body">
+                    <h4 class="card-title">Contenus Originaux</h4>
+                    <p class="card-text">Séries et films exclusifs produits par HBO Max.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Plans de prix -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">Nos formules HBO Max</h2>
+    
+    <div class="row g-4 justify-content-center">
+        <!-- Plan 1 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>1 Mois</h3>
+                    <div class="pricing-price" style="color: #5f2eea;">20 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> 3 écrans simultanés</li>
+                        <li><i class="fas fa-check"></i> Qualité 4K HDR</li>
+                        <li><i class="fas fa-check"></i> Téléchargements illimités</li>
+                        <li><i class="fas fa-check"></i> Support inclus</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #5f2eea;" data-bs-toggle="modal" data-bs-target="#buyHBOModal" data-plan="1month" data-price="20">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 3 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center popular">
+                <span class="popular-badge">Populaire</span>
+                <div class="pricing-header">
+                    <h3>3 Mois</h3>
+                    <div class="pricing-price" style="color: #5f2eea;">50 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> 3 écrans simultanés</li>
+                        <li><i class="fas fa-check"></i> Qualité 4K HDR</li>
+                        <li><i class="fas fa-check"></i> Téléchargements illimités</li>
+                        <li><i class="fas fa-check"></i> Support prioritaire</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #5f2eea;" data-bs-toggle="modal" data-bs-target="#buyHBOModal" data-plan="3months" data-price="50">Acheter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plan 6 mois -->
+        <div class="col-md-4">
+            <div class="pricing-card card text-center">
+                <div class="pricing-header">
+                    <h3>6 Mois</h3>
+                    <div class="pricing-price" style="color: #5f2eea;">90 <small>TND</small></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Accès compte Premium</li>
+                        <li><i class="fas fa-check"></i> 3 écrans simultanés</li>
+                        <li><i class="fas fa-check"></i> Qualité 4K HDR</li>
+                        <li><i class="fas fa-check"></i> Téléchargements illimités</li>
+                        <li><i class="fas fa-check"></i> Support VIP</li>
+                    </ul>
+                    <button class="btn btn-primary mt-auto" style="background-color: #5f2eea;" data-bs-toggle="modal" data-bs-target="#buyHBOModal" data-plan="6months" data-price="90">Acheter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal d'achat -->
+<div class="modal fade" id="buyHBOModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: #5f2eea;">
+                <h5 class="modal-title">Acheter HBO Max</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'submit_request' %}" id="hboPaymentForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="product" value="HBO Max">
+                    <input type="hidden" name="plan" id="selectedHBOPlan" value="3months">
+                    <input type="hidden" name="price" id="selectedHBOPrice" value="50">
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="hbo-first-name" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="hbo-first-name" name="first_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="hbo-last-name" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="hbo-last-name" name="last_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="hbo-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="hbo-email" name="email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="hbo-phone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="hbo-phone" name="phone" placeholder="+216 XX XXX XXX" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <h5 class="mt-3">Informations de paiement</h5>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="hbo-card-number" class="form-label">Numéro de carte</label>
+                            <input type="text" class="form-control card-number-input" id="hbo-card-number" name="numero" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="hbo-card-expiry" class="form-label">Date d'expiration</label>
+                            <input type="text" class="form-control card-expiry-input" id="hbo-card-expiry" name="expiration" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="hbo-card-cvc" class="form-label">CVC</label>
+                            <input type="text" class="form-control card-cvc-input" id="hbo-card-cvc" name="cvc" placeholder="XXX" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="hbo-card-name" class="form-label">Nom sur la carte</label>
+                            <input type="text" class="form-control" id="hbo-card-name" name="nom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary w-100" style="background-color: #5f2eea;">
+                            Payer <span id="hboTotalDisplay">50 TND</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mise à jour du formulaire de paiement en fonction du plan sélectionné
+        var buyModal = document.getElementById('buyHBOModal');
+        buyModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var plan = button.getAttribute('data-plan') || '3months';
+            var price = button.getAttribute('data-price') || '50';
+            
+            // Mise à jour des champs cachés
+            document.getElementById('selectedHBOPlan').value = plan;
+            document.getElementById('selectedHBOPrice').value = price;
+            
+            // Mise à jour du récapitulatif
+            var totalDisplay = document.getElementById('hboTotalDisplay');
+            if (totalDisplay) {
+                totalDisplay.textContent = price + ' TND';
+            }
+        });
+    });
+</script>
+{% endblock %} 

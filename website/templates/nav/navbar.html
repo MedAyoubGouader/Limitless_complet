@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <!-- Logo avec taille optimisée -->
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Limitless" class="logo-main" width="180" height="60">
+        </a>
+        
+        <!-- Bouton hamburger pour mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Éléments de navigation -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if 'netflix' in request.path %}active{% endif %}" href="{% url 'netflix_page' %}">Netflix</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if 'spotify' in request.path %}active{% endif %}" href="{% url 'spotify_page' %}">Spotify</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if 'disney' in request.path %}active{% endif %}" href="{% url 'disney_page' %}">Disney+</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">À propos</a>
+                </li>
+            </ul>
+            
+            <!-- Boutons d'authentification -->
+            <div class="nav-auth">
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i> Mon compte
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{% url 'account' %}">Tableau de bord</a></li>
+                            <li>
+                                <form method="post" action="{% url 'logout' %}" style="margin: 0;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item" style="width: 100%; text-align: left; border: none; background: none;">Déconnexion</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <a href="{% url 'signIN' %}" class="btn btn-outline-light me-2">Connexion</a>
+                    <a href="{% url 'register' %}" class="btn btn-light">Inscription</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav> 
