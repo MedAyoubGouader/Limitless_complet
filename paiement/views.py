@@ -5,8 +5,9 @@ from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from website.models import Payment, Order, User
+from website.models import Payment, Order, User, Product
 import stripe
+import json
 
 #render : permet de retourner un template HTML.
 
@@ -39,34 +40,77 @@ def payer(request):
 
     try:
         # Récupérer les données du formulaire
-        product = request.POST.get('product')
+        product_name = request.POST.get('product')
         plan = request.POST.get('plan')
-        price = float(request.POST.get('price', 0))
+        price_str = request.POST.get('price', '0')
+        
+        # Validation des données requises
+        if not all([product_name, plan, price_str]):
+            return JsonResponse({
+                'success': False,
+                'message': 'Données manquantes'
+            })
+        
+        # Validation et conversion du prix
+        try:
+            # Remplacer la virgule par un point pour la conversion
+            price_str = price_str.replace(',', '.')
+            price = float(price_str)
+            if price <= 0:
+                raise ValueError("Le montant doit être supérieur à 0")
+        except ValueError as e:
+            return JsonResponse({
+                'success': False,
+                'message': f'Montant invalide: {str(e)}'
+            })
+        
+        # Récupérer l'objet Product en gérant les variantes de noms
+        try:
+            # Essayer d'abord avec le nom exact
+            product_obj = Product.objects.get(name=product_name)
+        except Product.DoesNotExist:
+            try:
+                # Si non trouvé, essayer avec le nom de base (sans "Premium", "Plus", etc.)
+                base_name = product_name.split()[0]  # Prendre le premier mot
+                product_obj = Product.objects.get(name=base_name)
+            except Product.DoesNotExist:
+                return JsonResponse({
+                    'success': False,
+                    'message': f'Produit "{product_name}" non trouvé'
+                })
         
         # Créer une commande
         order = Order.objects.create(
             user=request.user,
-            total_amount=price,
+            product=product_obj,
+            price=price,
             status='pending'
         )
 
         # Créer l'intention de paiement Stripe
-        intent = stripe.PaymentIntent.create(
-            amount=int(price * 100),  # Stripe utilise les centimes
-            currency='tnd',
-            metadata={
-                'order_id': str(order.id),
-                'product': product,
-                'plan': plan
-            }
-        )
+        try:
+            intent = stripe.PaymentIntent.create(
+                amount=int(price * 100),  # Stripe utilise les centimes
+                currency='tnd',
+                metadata={
+                    'order_id': str(order.id),
+                    'product': product_name,
+                    'plan': plan
+                }
+            )
+        except stripe.error.StripeError as e:
+            # En cas d'erreur Stripe, annuler la commande
+            order.status = 'cancelled'
+            order.save()
+            return JsonResponse({
+                'success': False,
+                'message': f'Erreur de paiement: {str(e)}'
+            })
 
         # Créer l'enregistrement de paiement
         payment = Payment.objects.create(
-            order=order,
             user=request.user,
             amount=price,
-            method='carte',
             status='pending'
         )
 
@@ -79,7 +123,7 @@ def payer(request):
     except Exception as e:
         return JsonResponse({
             'success': False,
-            'message': str(e)
+            'message': f'Une erreur est survenue: {str(e)}'
         })
 
 @csrf_exempt

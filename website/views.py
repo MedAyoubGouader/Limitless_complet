@@ -233,15 +233,26 @@ def add_review(request):
         rating = request.POST.get('rating')
         comment = request.POST.get('comment')
         
-        Review.objects.create(
-            user=request.user,
-            service=service,
-            rating=rating,
-            comment=comment
-        )
-        messages.success(request, 'Votre avis a été publié avec succès !')
-        return redirect('review_list')
+        if not all([service, rating, comment]):
+            messages.error(request, 'Veuillez remplir tous les champs.')
+            return render(request, 'reviews/add_review.html')
         
+        try:
+            rating = int(rating)
+            if not (1 <= rating <= 5):
+                raise ValueError('Invalid rating')
+                
+            Review.objects.create(
+                user=request.user,
+                service=service,
+                rating=rating,
+                comment=comment
+            )
+            messages.success(request, 'Votre avis a été publié avec succès !')
+            return redirect('review_list')
+        except (ValueError, TypeError):
+            messages.error(request, 'Une erreur est survenue. Veuillez réessayer.')
+            
     return render(request, 'reviews/add_review.html')
 
 # Products

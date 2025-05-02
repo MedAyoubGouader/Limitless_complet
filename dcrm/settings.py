@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -168,6 +172,16 @@ LOGIN_REDIRECT_URL = '/account/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Stripe settings
-STRIPE_PUBLIC_KEY = 'pk_test_your_publishable_key'  # Replace with your publishable key
-STRIPE_SECRET_KEY = 'sk_test_your_secret_key'  # Replace with your secret key
-STRIPE_WEBHOOK_SECRET = 'whsec_your_webhook_secret'  # Replace with your webhook secret
+# Get these keys from your Stripe Dashboard: https://dashboard.stripe.com/apikeys
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_your_publishable_key')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_your_secret_key')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', 'whsec_your_webhook_secret')
+
+# Stripe configuration
+STRIPE_CURRENCY = 'eur'  # or 'usd', 'gbp', etc.
+STRIPE_MINIMUM_AMOUNT = 50  # minimum amount in cents
+STRIPE_MAXIMUM_AMOUNT = 999999  # maximum amount in cents
+
+# Stripe webhook settings
+STRIPE_WEBHOOK_TOLERANCE = 300  # 5 minutes in seconds
+STRIPE_WEBHOOK_ENDPOINT = '/webhook/'  # your webhook endpoint URL

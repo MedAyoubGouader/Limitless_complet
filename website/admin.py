@@ -45,31 +45,90 @@ class CustomUserAdmin(UserAdmin):
         )
     purchase_history.short_description = 'Historique d\'achat'
 
-# Configuration personnalisée pour le modèle Category
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'icon', 'order', 'get_product_count')
     list_editable = ('order',)
-    search_fields = ('name',)
-    ordering = ('order', 'name')
+    search_fields = ('name', 'description')
+    ordering = ('order',)
 
     def get_product_count(self, obj):
         return obj.products.count()
     get_product_count.short_description = 'Nombre de produits'
 
-# Configuration personnalisée pour le modèle Payment
-class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'amount', 'status', 'created_at', 'updated_at')
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'price', 'order', 'is_active', 'get_image_preview')
+    list_filter = ('category', 'is_active')
+    list_editable = ('price', 'is_active', 'order')
+    search_fields = ('name', 'description')
+    ordering = ('category', 'order')
+    readonly_fields = ('get_image_preview',)
+
+    def get_image_preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="max-height: 50px;"/>', obj.image.url)
+        return "Pas d'image"
+    get_image_preview.short_description = 'Aperçu'
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'product', 'status', 'created_at', 'price')
     list_filter = ('status', 'created_at')
-    search_fields = ('user__username', 'user__email')
-    readonly_fields = ('created_at', 'updated_at')
+    search_fields = ('user__username', 'product__name')
+    readonly_fields = ('created_at',)
     ordering = ('-created_at',)
 
-# Enregistrement des modèles avec leurs configurations personnalisées
-admin.site.register(User, CustomUserAdmin)
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Product)
-admin.site.register(Order)
-admin.site.register(Payment, PaymentAdmin)
-admin.site.register(Review)
-admin.site.register(SupportTicket)
-admin.site.register(Record)
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'amount', 'status', 'created_at')
+    list_filter = ('status', 'created_at')
+    search_fields = ('user__username',)
+    readonly_fields = ('created_at',)
+    ordering = ('-created_at',)
+    date_hierarchy = 'created_at'
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('user', 'service', 'rating', 'created_at')
+    list_filter = ('rating', 'service', 'created_at')
+    search_fields = ('user__username', 'comment')
+    readonly_fields = ('created_at',)
+    ordering = ('-created_at',)
+
+@admin.register(SupportTicket)
+class SupportTicketAdmin(admin.ModelAdmin):
+    list_display = ('user', 'subject', 'status', 'created_at')
+    list_filter = ('status', 'created_at')
+    search_fields = ('user__username', 'subject', 'message')
+    readonly_fields = ('created_at',)
+    ordering = ('-created_at',)
+
+@admin.register(Record)
+class RecordAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'email', 'phone', 'created')
+    search_fields = ('first_name', 'last_name', 'email', 'phone')
+    readonly_fields = ('created',)
+    ordering = ('-created',)
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'role', 'balance', 'date_joined')
+    list_filter = ('role', 'is_active', 'is_staff')
+    search_fields = ('username', 'email', 'first_name', 'last_name')
+    readonly_fields = ('date_joined', 'last_login')
+    ordering = ('-date_joined',)
+    fieldsets = (
+        ('Informations personnelles', {
+            'fields': ('username', 'email', 'password', 'first_name', 'last_name')
+        }),
+        ('Profil', {
+            'fields': ('role', 'balance', 'profile_photo', 'phone', 'address', 'city')
+        }),
+        ('Permissions', {
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
+        }),
+        ('Dates importantes', {
+            'fields': ('last_login', 'date_joined')
+        }),
+    )

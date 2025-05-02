@@ -46,16 +46,16 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-2">
                                     <span>{{ product }} ({{ plan }})</span>
-                                    <span class="fw-bold">{{ price }} TND</span>
+                                    <span class="fw-bold">{{ price|floatformat:2 }} TND</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-2">
                                     <span>Frais de service</span>
-                                    <span>0 TND</span>
+                                    <span>0.00 TND</span>
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between">
                                     <span class="fw-bold">Total</span>
-                                    <span class="fw-bold">{{ price }} TND</span>
+                                    <span class="fw-bold">{{ price|floatformat:2 }} TND</span>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
 
                     <form id="payment-form">
                         {% csrf_token %}
-                        <input type="hidden" name="product" value="{{ product }}">
+                        <input type="hidden" name="product" value="{{ product.name }}">
                         <input type="hidden" name="plan" value="{{ plan }}">
                         <input type="hidden" name="price" value="{{ price }}">
                         
@@ -76,7 +76,7 @@
                         <div class="mt-4">
                             <button type="submit" class="btn btn-primary btn-lg w-100" id="submit-button">
                                 <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true"></span>
-                                Payer {{ price }} TND
+                                Payer {{ price|floatformat:2 }} TND
                             </button>
                             <div class="text-center mt-3">
                                 <small class="text-muted">En cliquant sur "Payer", vous acceptez nos conditions d'utilisation.</small>
@@ -145,17 +145,13 @@
         
         try {
             // Create payment intent
+            const formData = new FormData(form);
             const response = await fetch('{% url "payer" %}', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
                 },
-                body: JSON.stringify({
-                    product: form.querySelector('[name=product]').value,
-                    plan: form.querySelector('[name=plan]').value,
-                    price: form.querySelector('[name=price]').value
-                })
+                body: formData
             });
             
             const data = await response.json();
@@ -183,7 +179,12 @@
                     window.location.href = '{% url "success" %}?order_id=' + data.order_id;
                 }
             } else {
-                throw new Error(data.message);
+                // Handle server error
+                const errorElement = document.getElementById('card-errors');
+                errorElement.textContent = data.message || 'Une erreur est survenue lors du traitement du paiement.';
+                errorElement.style.display = 'block';
+                submitButton.disabled = false;
+                spinner.classList.add('d-none');
             }
         } catch (error) {
             const errorElement = document.getElementById('card-errors');
