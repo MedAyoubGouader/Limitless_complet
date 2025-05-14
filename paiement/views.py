@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from .models import Transaction
 from datetime import datetime
 from django.http import HttpResponse, JsonResponse
 from django.conf import settings
@@ -8,12 +7,14 @@ from django.views.decorators.http import require_POST
 from website.models import Payment, Order, User, Product
 import stripe
 import json
+from django.contrib.auth.decorators import login_required
+import time
+import traceback
+import uuid
 
 #render : permet de retourner un template HTML.
 
 #redirect : redirige l'utilisateur vers une autre page (ex : succès ou échec).
-
-#transaction : modèle utilisé pour enregistrer les paiements dans la base.
 
 #datetime : utilisé pour vérifier si la date d'expiration est dans le futur.
 
@@ -32,133 +33,178 @@ CARTES_VALIDES = [
 # Configure Stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-# 💳 Page de formulaire de paiement et traitement
-@require_POST
+def validate_card(card_number, card_name, cvc, expiration):
+    """Valide une carte de crédit fictive"""
+    print(f"Validation de la carte:")
+    print(f"Numéro: {card_number}")
+    print(f"Nom: {card_name}")
+    print(f"CVC: {cvc}")
+    print(f"Expiration: {expiration}")
+    
+    for card in CARTES_VALIDES:
+        print(f"Comparaison avec la carte: {card}")
+        if (card['numero'] == card_number and 
+            card['nom'] == card_name and 
+            card['cvc'] == cvc and 
+            card['expiration'] == expiration):
+            print("Carte valide trouvée!")
+            return True
+    print("Aucune carte valide trouvée")
+    return False
+
+@login_required
+def payment_form(request):
+    """Vue pour charger le formulaire de paiement"""
+    product = request.GET.get('product', '')
+    plan = request.GET.get('plan', '')
+    price = request.GET.get('price', '')
+    return render(request, 'paiement/payment_form.html', {
+        'product': product,
+        'plan': plan,
+        'price': price,
+    })
+
+@login_required
+@csrf_exempt
 def payer(request):
-    if not request.user.is_authenticated:
-        return JsonResponse({'success': False, 'message': 'Vous devez être connecté pour effectuer un paiement.'})
-
-    try:
-        # Récupérer les données du formulaire
-        product_name = request.POST.get('product')
-        plan = request.POST.get('plan')
-        price_str = request.POST.get('price', '0')
-        
-        # Validation des données requises
-        if not all([product_name, plan, price_str]):
-            return JsonResponse({
-                'success': False,
-                'message': 'Données manquantes'
-            })
-        
-        # Validation et conversion du prix
+    if request.method == 'POST':
         try:
-            # Remplacer la virgule par un point pour la conversion
-            price_str = price_str.replace(',', '.')
-            price = float(price_str)
-            if price <= 0:
-                raise ValueError("Le montant doit être supérieur à 0")
-        except ValueError as e:
-            return JsonResponse({
-                'success': False,
-                'message': f'Montant invalide: {str(e)}'
-            })
-        
-        # Récupérer l'objet Product en gérant les variantes de noms
-        try:
-            # Essayer d'abord avec le nom exact
-            product_obj = Product.objects.get(name=product_name)
-        except Product.DoesNotExist:
+            print("Début du traitement du paiement (mode démo)")
+            data = json.loads(request.body)
+            print(f"Données reçues: {data}")
+            expiration = f"{data['exp_year']}-{data['exp_month'].zfill(2)}"
+            print(f"Date d'expiration formatée: {expiration}")
+            print("Validation de la carte...")
+            if not validate_card(
+                data['card_number'], 
+                data['card_name'], 
+                data['cvc'], 
+                expiration
+            ):
+                print("Carte invalide")
+                return JsonResponse({'success': False, 'error': 'Carte de crédit invalide'}, status=400)
+            print("Carte valide (mode démo)")
+            
+            # Récupérer les informations du produit, du plan et du prix depuis la requête
+            product_name = request.GET.get('product', '')
+            plan = request.GET.get('plan', '')
+            price = request.GET.get('price', '')
+            
+            # Récupérer l'utilisateur connecté
+            user = request.user
+            
+            # Créer une commande
             try:
-                # Si non trouvé, essayer avec le nom de base (sans "Premium", "Plus", etc.)
-                base_name = product_name.split()[0]  # Prendre le premier mot
-                product_obj = Product.objects.get(name=base_name)
+                product = Product.objects.get(name=product_name)
             except Product.DoesNotExist:
-                return JsonResponse({
-                    'success': False,
-                    'message': f'Produit "{product_name}" non trouvé'
-                })
-        
-        # Créer une commande
-        order = Order.objects.create(
-            user=request.user,
-            product=product_obj,
-            price=price,
-            status='pending'
-        )
-
-        # Créer l'intention de paiement Stripe
-        try:
-            intent = stripe.PaymentIntent.create(
-                amount=int(price * 100),  # Stripe utilise les centimes
-                currency='tnd',
-                metadata={
-                    'order_id': str(order.id),
-                    'product': product_name,
-                    'plan': plan
-                }
+                return JsonResponse({'success': False, 'error': 'Produit non trouvé'}, status=400)
+            
+            order = Order.objects.create(
+                user=user,
+                product=product,
+                plan=plan,
+                price=price,
+                status='completed'  # Simuler le paiement réussi
             )
-        except stripe.error.StripeError as e:
-            # En cas d'erreur Stripe, annuler la commande
-            order.status = 'cancelled'
-            order.save()
+            
+            # Créer un paiement
+            payment = Payment.objects.create(
+                user=user,
+                order=order,
+                amount=price
+            )
+            
+            print(f"Paiement simulé réussi, order_id: {order.id}")
             return JsonResponse({
-                'success': False,
-                'message': f'Erreur de paiement: {str(e)}'
+                'success': True,
+                'message': 'Paiement effectué avec succès (mode démo)',
+                'order_id': str(order.id)
             })
+        except Exception as e:
+            print(f"Erreur détaillée lors du paiement: {str(e)}")
+            print(f"Traceback complet: {traceback.format_exc()}")
+            return JsonResponse({
+                'success': False, 
+                'error': f'Erreur serveur: {str(e)}'
+            }, status=500)
+    return JsonResponse({
+        'success': False, 
+        'error': 'Méthode non autorisée'
+    }, status=405)
 
-        # Créer l'enregistrement de paiement
-        payment = Payment.objects.create(
-            user=request.user,
-            amount=price,
-            status='pending'
-        )
-
-        return JsonResponse({
-            'success': True,
-            'client_secret': intent.client_secret,
-            'order_id': str(order.id)
+@login_required
+def success(request):
+    order_id = request.GET.get('order_id')
+    try:
+        order = Order.objects.get(id=order_id)
+        product = order.product
+        payment = Payment.objects.get(order=order)
+        message = "Merci pour votre achat ! (mode démo) Les identifiants du compte vous seront envoyés par email dans quelques minutes."
+        return render(request, 'paiement/success.html', {
+            'order': order,
+            'product': product,
+            'payment': payment,
+            'message': message
+        })
+    except Order.DoesNotExist:
+        return render(request, 'paiement/success.html', {
+            'order': None,
+            'product': None,
+            'payment': None,
+            'message': "Merci pour votre achat ! (mode démo) Les identifiants du compte vous seront envoyés par email dans quelques minutes. (Order not found)"
         })
 
-    except Exception as e:
-        return JsonResponse({
-            'success': False,
-            'message': f'Une erreur est survenue: {str(e)}'
-        })
+@login_required
+def fail(request):
+    error = request.GET.get('error', 'Une erreur est survenue lors du paiement')
+    return render(request, 'paiement/fail.html', {'error': error})
 
 @csrf_exempt
 def stripe_webhook(request):
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
-        )
-    except ValueError as e:
-        return JsonResponse({'error': 'Invalid payload'}, status=400)
-    except stripe.error.SignatureVerificationError as e:
-        return JsonResponse({'error': 'Invalid signature'}, status=400)
-
-    if event['type'] == 'payment_intent.succeeded':
-        payment_intent = event['data']['object']
-        order_id = payment_intent['metadata']['order_id']
-        
+    if request.method == 'POST':
         try:
-            order = Order.objects.get(id=order_id)
-            order.status = 'completed'
-            order.save()
+            event = json.loads(request.body)
             
-            payment = Payment.objects.get(order=order)
-            payment.status = 'successful'
-            payment.save()
+            if event['type'] == 'payment_intent.succeeded':
+                payment_intent = event['data']['object']
+                order_id = payment_intent['metadata']['order_id']
+                
+                try:
+                    order = Order.objects.get(id=order_id)
+                    order.status = 'completed'
+                    order.save()
+                    
+                    payment = Payment.objects.get(order=order)
+                    payment.status = 'successful'
+                    payment.save()
+                    
+                except (Order.DoesNotExist, Payment.DoesNotExist):
+                    pass
+                    
+            elif event['type'] == 'payment_intent.payment_failed':
+                payment_intent = event['data']['object']
+                order_id = payment_intent['metadata']['order_id']
+                
+                try:
+                    order = Order.objects.get(id=order_id)
+                    order.status = 'failed'
+                    order.save()
+                    
+                    payment = Payment.objects.get(order=order)
+                    payment.status = 'failed'
+                    payment.save()
+                    
+                except (Order.DoesNotExist, Payment.DoesNotExist):
+                    pass
             
-            # Envoyer un email de confirmation ici
+            return JsonResponse({'status': 'success'})
             
-        except (Order.DoesNotExist, Payment.DoesNotExist):
-            return JsonResponse({'error': 'Order not found'}, status=404)
-
-    return JsonResponse({'status': 'success'})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 # ✅ Routes de simulation simple (optionnelles)
 def simulate_payment_success(request):
@@ -166,12 +212,3 @@ def simulate_payment_success(request):
 
 def simulate_payment_fail(request):
     return HttpResponse("❌ Paiement simulé échoué.")
-
-# ✅ Pages de résultat
-def success(request):
-    order_id = request.GET.get('order_id')
-    return render(request, 'payment/success.html', {'order_id': order_id})
-
-def fail(request):
-    error = request.GET.get('error', 'Une erreur est survenue lors du paiement.')
-    return render(request, 'payment/fail.html', {'error': error})

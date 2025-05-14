@@ -75,7 +75,7 @@
                             <li class="mb-2">✓ Téléchargement</li>
                             <li class="mb-2">✓ Multi-appareils</li>
                         </ul>
-                        <button class="btn btn-primary w-100 mt-4" style="background-color: #000000; border-color: #000000;" onclick="openPurchaseModal('Apple TV+', '1 Mois', 15)">Acheter</button>
+                        <a href="{% url 'payment_form' %}?product=Apple TV+ Premium&plan=1 mois&price=15" class="btn btn-primary">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                             <li class="mb-2">✓ Multi-appareils</li>
                             <li class="mb-2">✓ Économisez 10 TND</li>
                         </ul>
-                        <button class="btn btn-primary w-100 mt-4" style="background-color: #000000; border-color: #000000;" onclick="openPurchaseModal('Apple TV+', '3 Mois', 35)">Acheter</button>
+                        <a href="{% url 'payment_form' %}?product=Apple TV+ Premium&plan=3 mois&price=35" class="btn btn-primary">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                             <li class="mb-2">✓ Multi-appareils</li>
                             <li class="mb-2">✓ Économisez 30 TND</li>
                         </ul>
-                        <button class="btn btn-primary w-100 mt-4" style="background-color: #000000; border-color: #000000;" onclick="openPurchaseModal('Apple TV+', '6 Mois', 60)">Acheter</button>
+                        <a href="{% url 'payment_form' %}?product=Apple TV+ Premium&plan=6 mois&price=60" class="btn btn-primary">Acheter</a>
                     </div>
                 </div>
             </div>

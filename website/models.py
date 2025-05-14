@@ -91,6 +91,7 @@ class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='orders')
+    plan = models.CharField(max_length=50, default='standard')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(
         max_length=10,
@@ -168,7 +169,7 @@ class Review(models.Model):
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)],blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_column='user_id', to_field='id')
     
     class Meta:
         db_table = 'website_review'  # Explicitly set the table name

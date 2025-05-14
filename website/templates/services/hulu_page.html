@@ -14,9 +14,7 @@
                 Profitez d'une expérience de streaming premium à un prix imbattable.
             </p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
-                <button class="btn btn-primary btn-lg px-4" style="background-color: #1CE783;" data-bs-toggle="modal" data-bs-target="#buyHuluModal">
-                    <i class="fas fa-shopping-cart me-2"></i> Acheter maintenant
-                </button>
+                <a href="{% url 'payment_form' %}?product=Hulu Premium&plan=1 mois&price=12" class="btn btn-primary">Acheter</a>
             </div>
         </div>
         <div class="col-lg-6">
@@ -82,7 +80,7 @@
                         <li><i class="fas fa-check"></i> Téléchargements illimités</li>
                         <li><i class="fas fa-check"></i> Support inclus</li>
                     </ul>
-                    <button class="btn btn-primary mt-auto" style="background-color: #1CE783;" data-bs-toggle="modal" data-bs-target="#buyHuluModal" data-plan="1month" data-price="18">Acheter</button>
+                    <a href="{% url 'payment_form' %}?product=Hulu Premium&plan=1 mois&price=12" class="btn btn-primary mt-auto">Acheter</a>
                 </div>
             </div>
         </div>
@@ -103,7 +101,7 @@
                         <li><i class="fas fa-check"></i> Téléchargements illimités</li>
                         <li><i class="fas fa-check"></i> Support prioritaire</li>
                     </ul>
-                    <button class="btn btn-primary mt-auto" style="background-color: #1CE783;" data-bs-toggle="modal" data-bs-target="#buyHuluModal" data-plan="3months" data-price="45">Acheter</button>
+                    <a href="{% url 'payment_form' %}?product=Hulu Premium&plan=3 mois&price=30" class="btn btn-primary mt-auto">Acheter</a>
                 </div>
             </div>
         </div>
@@ -123,7 +121,7 @@
                         <li><i class="fas fa-check"></i> Téléchargements illimités</li>
                         <li><i class="fas fa-check"></i> Support VIP</li>
                     </ul>
-                    <button class="btn btn-primary mt-auto" style="background-color: #1CE783;" data-bs-toggle="modal" data-bs-target="#buyHuluModal" data-plan="6months" data-price="80">Acheter</button>
+                    <a href="{% url 'payment_form' %}?product=Hulu Premium&plan=6 mois&price=55" class="btn btn-primary mt-auto">Acheter</a>
                 </div>
             </div>
         </div>

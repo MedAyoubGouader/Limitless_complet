@@ -15,9 +15,10 @@ from rest_framework import viewsets, permissions
 def home(request):
     try:
         reviews = Review.objects.all().order_by('-created_at')[:6]  # Get the 6 most recent reviews
-    except ProgrammingError:
-        # If the table doesn't exist yet, just pass an empty list
+    except Exception as e:
+        # Si la table n'existe pas ou s'il y a une autre erreur, on passe une liste vide
         reviews = []
+        print(f"Erreur lors de la récupération des reviews: {str(e)}")
     
     response = render(request, 'home/home.html', {'reviews': reviews})
     response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
@@ -34,13 +35,21 @@ def signIN(request):
             messages.error(request, 'Veuillez remplir tous les champs.')
             return render(request, 'auth/login.html')
         
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'Connexion réussie !')
-            return redirect('home')
-        else:
-            messages.error(request, 'Nom d\'utilisateur ou mot de passe incorrect.')
+        try:
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Connexion réussie !')
+                return redirect('home')
+            else:
+                # Vérifier si l'utilisateur existe
+                try:
+                    User.objects.get(username=username)
+                    messages.error(request, 'Mot de passe incorrect.')
+                except User.DoesNotExist:
+                    messages.error(request, 'Nom d\'utilisateur incorrect.')
+        except Exception as e:
+            messages.error(request, f'Une erreur est survenue : {str(e)}')
     
     # Si l'utilisateur est déjà connecté, rediriger vers la page d'accueil
     if request.user.is_authenticated:
@@ -52,17 +61,35 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, 'Inscription réussie ! Bienvenue sur votre espace personnel.')
-                return redirect('account')
-            else:
-                messages.error(request, 'Erreur lors de la connexion automatique. Veuillez vous connecter manuellement.')
-                return redirect('signIN')
+            try:
+                # Vérifier si le nom d'utilisateur existe déjà
+                if User.objects.filter(username=form.cleaned_data['username']).exists():
+                    messages.error(request, 'Ce nom d\'utilisateur est déjà pris.')
+                    return render(request, 'auth/register.html', {'form': form})
+                
+                # Vérifier si l'email existe déjà
+                if User.objects.filter(email=form.cleaned_data['email']).exists():
+                    messages.error(request, 'Cet email est déjà utilisé.')
+                    return render(request, 'auth/register.html', {'form': form})
+                
+                user = form.save(commit=False)
+                user.set_password(form.cleaned_data['password1'])
+                user.save()
+                
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password1')
+                
+                # Authentifier l'utilisateur immédiatement après l'inscription
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, 'Inscription réussie ! Bienvenue sur votre espace personnel.')
+                    return redirect('account')
+                else:
+                    messages.error(request, 'Erreur lors de la connexion automatique. Veuillez vous connecter manuellement.')
+                    return redirect('signIN')
+            except Exception as e:
+                messages.error(request, f'Une erreur est survenue lors de l\'inscription : {str(e)}')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -75,7 +102,7 @@ def register(request):
 def account(request):
     user = request.user
     orders = Order.objects.filter(user=user)
-    payments = Payment.objects.filter(user=user)
+    payments = Payment.objects.filter(user=user).values('id', 'amount', 'status', 'created_at')
     
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=user)

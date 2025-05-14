@@ -1,0 +1,253 @@
+{% load static %}
+
+<div class="payment-form-container">
+    <form id="payment-form" class="payment-form">
+        <input type="hidden" name="product" value="{{ product }}">
+        <input type="hidden" name="plan" value="{{ plan }}">
+        <input type="hidden" name="price" value="{{ price }}">
+        
+        <div class="form-group">
+            <label for="card_name">Nom sur la carte</label>
+            <input type="text" id="card_name" name="card_name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="card_number">Numéro de carte</label>
+            <div class="card-input-container">
+                <input type="text" id="card_number" name="card_number" maxlength="19" required>
+                <div class="card-type-icon"></div>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="exp_month">Mois d'expiration</label>
+                <input type="text" id="exp_month" name="exp_month" maxlength="2" placeholder="MM" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="exp_year">Année d'expiration</label>
+                <input type="text" id="exp_year" name="exp_year" maxlength="4" placeholder="YYYY" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cvc">CVC</label>
+                <input type="text" id="cvc" name="cvc" maxlength="3" required>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="error-message"></div>
+        <div class="success-message"></div>
+        
+        <button type="submit" class="submit-btn">Payer</button>
+    </form>
+</div>
+
+<style>
+.payment-form-container {
+    padding: 20px;
+}
+
+.payment-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #005eff;
+    box-shadow: 0 0 0 2px rgba(0,94,255,0.1);
+}
+
+.card-input-container {
+    position: relative;
+}
+
+.card-type-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #005eff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #0046cc;
+}
+
+.error-message {
+    color: #dc3545;
+    margin-bottom: 15px;
+    display: none;
+}
+
+.success-message {
+    color: #28a745;
+    margin-bottom: 15px;
+    display: none;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('payment-form');
+    const cardNumber = document.getElementById('card_number');
+    const expMonth = document.getElementById('exp_month');
+    const expYear = document.getElementById('exp_year');
+    const cvc = document.getElementById('cvc');
+    const cardTypeIcon = document.querySelector('.card-type-icon');
+    
+    // Formatage du numéro de carte
+    cardNumber.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.replace(/(\d{4})/g, '$1 ').trim();
+        e.target.value = value;
+        
+        // Détection du type de carte
+        const firstDigit = value.charAt(0);
+        if (firstDigit === '4') {
+            cardTypeIcon.style.backgroundImage = 'url("{% static "images/visa.png" %}")';
+        } else if (firstDigit === '5') {
+            cardTypeIcon.style.backgroundImage = 'url("{% static "images/mastercard.png" %}")';
+        } else {
+            cardTypeIcon.style.backgroundImage = 'none';
+        }
+    });
+    
+    // Formatage de la date d'expiration
+    expMonth.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value > 12) value = 12;
+        e.target.value = value;
+    });
+    
+    expYear.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        e.target.value = value;
+    });
+    
+    // Formatage du CVC
+    cvc.addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '');
+    });
+    
+    // Soumission du formulaire
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const errorMessage = form.querySelector('.error-message');
+        const successMessage = form.querySelector('.success-message');
+        
+        // Réinitialisation des messages
+        errorMessage.style.display = 'none';
+        successMessage.style.display = 'none';
+        
+        // Préparation des données
+        const formData = {
+            product: form.querySelector('[name="product"]').value,
+            plan: form.querySelector('[name="plan"]').value,
+            price: form.querySelector('[name="price"]').value,
+            card_name: document.getElementById('card_name').value,
+            card_number: cardNumber.value.replace(/\s/g, ''),
+            exp_month: expMonth.value.padStart(2, '0'),
+            exp_year: expYear.value,
+            cvc: cvc.value,
+            email: document.getElementById('email').value
+        };
+        
+        console.log('Données envoyées:', formData);
+        
+        try {
+            const response = await fetch('{% url "payer" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                successMessage.textContent = data.message;
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = `{% url "success" %}?order_id=${data.order_id}`;
+                }, 1500);
+            } else {
+                errorMessage.textContent = data.error;
+                errorMessage.style.display = 'block';
+            }
+        } catch (error) {
+            errorMessage.textContent = 'Une erreur est survenue lors du paiement';
+            errorMessage.style.display = 'block';
+        }
+    });
+    
+    // Fonction pour récupérer le token CSRF
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
+</script> 

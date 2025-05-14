@@ -75,7 +75,7 @@
                             <li class="mb-2">✓ Téléchargement</li>
                             <li class="mb-2">✓ Qualité audio élevée</li>
                         </ul>
-                        <button class="btn btn-primary w-100 mt-4" style="background-color: #00C7F2; border-color: #00C7F2;" onclick="openPurchaseModal('Deezer', '1 Mois', 10)">Acheter</button>
+                        <a href="{% url 'payment_form' %}?product=Deezer Premium&plan=1 mois&price=10" class="btn btn-primary">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                             <li class="mb-2">✓ Qualité audio élevée</li>
                             <li class="mb-2">✓ Économisez 5 TND</li>
                         </ul>
-                        <button class="btn btn-primary w-100 mt-4" style="background-color: #00C7F2; border-color: #00C7F2;" onclick="openPurchaseModal('Deezer', '3 Mois', 25)">Acheter</button>
+                        <a href="{% url 'payment_form' %}?product=Deezer Premium&plan=3 mois&price=25" class="btn btn-primary">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                             <li class="mb-2">✓ Qualité audio élevée</li>
                             <li class="mb-2">✓ Économisez 15 TND</li>
                         </ul>
-                        <button class="btn btn-primary w-100 mt-4" style="background-color: #00C7F2; border-color: #00C7F2;" onclick="openPurchaseModal('Deezer', '6 Mois', 45)">Acheter</button>
+                        <a href="{% url 'payment_form' %}?product=Deezer Premium&plan=6 mois&price=45" class="btn btn-primary">Acheter</a>
                     </div>
                 </div>
             </div>

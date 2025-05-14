@@ -14,9 +14,9 @@
                 de Disney, Pixar, Marvel, Star Wars et National Geographic, le tout à un prix exceptionnel.
             </p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
-                <button class="btn btn-primary btn-lg px-4" style="background-color: #0063e5;" data-bs-toggle="modal" data-bs-target="#buyDisneyModal">
+                <a href="{% url 'payment_form' %}?product=Disney+ Premium&plan=1 mois&price=18" class="btn btn-primary btn-lg px-4" style="background-color: #0063e5;">
                     <i class="fas fa-shopping-cart me-2"></i> Acheter maintenant
-                </button>
+                </a>
             </div>
         </div>
         <div class="col-lg-6">
@@ -82,7 +82,7 @@
                         <li><i class="fas fa-check"></i> Téléchargements illimités</li>
                         <li><i class="fas fa-check"></i> Support inclus</li>
                     </ul>
-                    <button class="btn btn-primary mt-auto" style="background-color: #0063e5;" data-bs-toggle="modal" data-bs-target="#buyDisneyModal" data-plan="1month" data-price="18">Acheter</button>
+                    <a href="{% url 'payment_form' %}?product=Disney+ Premium&plan=1 mois&price=18" class="btn btn-primary mt-auto" style="background-color: #0063e5;">Acheter</a>
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
                         <li><i class="fas fa-check"></i> Téléchargements illimités</li>
                         <li><i class="fas fa-check"></i> Support prioritaire</li>
                     </ul>
-                    <button class="btn btn-primary mt-auto" style="background-color: #0063e5;" data-bs-toggle="modal" data-bs-target="#buyDisneyModal" data-plan="3months" data-price="45">Acheter</button>
+                    <a href="{% url 'payment_form' %}?product=Disney+ Premium&plan=3 mois&price=45" class="btn btn-primary mt-auto" style="background-color: #0063e5;">Acheter</a>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
                         <li><i class="fas fa-check"></i> Téléchargements illimités</li>
                         <li><i class="fas fa-check"></i> Support VIP</li>
                     </ul>
-                    <button class="btn btn-primary mt-auto" style="background-color: #0063e5;" data-bs-toggle="modal" data-bs-target="#buyDisneyModal" data-plan="6months" data-price="80">Acheter</button>
+                    <a href="{% url 'payment_form' %}?product=Disney+ Premium&plan=6 mois&price=80" class="btn btn-primary mt-auto" style="background-color: #0063e5;">Acheter</a>
                 </div>
             </div>
         </div>
