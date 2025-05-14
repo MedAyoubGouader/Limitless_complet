@@ -14,7 +14,7 @@ class Record(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{s        git pull origin mainelf.first_name} {self.last_name}"
 
 # ✅ Nouveau modèle pour les clients Limitless
 # Etape 1 : Corriger models.py (dans website/models.py)
